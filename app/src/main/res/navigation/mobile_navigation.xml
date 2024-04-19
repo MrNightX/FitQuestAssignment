@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.fitquest.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.fitquest.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.fitquest.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/login_In"
+        android:name="com.example.fitquest.Login_In"
+        android:label="Log In"
+        tools:layout="@layout/fragment_login__in" />
+    <fragment
+        android:id="@+id/navigation_addRoutine"
+        android:name="com.example.fitquest.WorkoutPage"
+        android:label="fragment_workout_page"
+        tools:layout="@layout/fragment_workout_page" />
+    <fragment
+        android:id="@+id/profilePage"
+        android:name="com.example.fitquest.ProfilePage"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile_page" />
+</navigation>

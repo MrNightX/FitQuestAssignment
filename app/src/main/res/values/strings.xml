@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">FitQuest</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="item">Item</string>
+    <string name="workout">Workout</string>
+    <string name="profile">Profile</string>
+    <string name="WorkoutPage">Workout page here</string>
+    <string name="LoginPage">Login Page Here</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back_button">Back button</string>
+    <string name="ProfileTitle">Account</string>
+    <string name="ProfileImageDesc">This is your profile image</string>
+    <string name="goals">Goals</string>
+    <string name="my_body">My Body</string>
+    <string name="settings">Settings</string>
+
+</resources>
