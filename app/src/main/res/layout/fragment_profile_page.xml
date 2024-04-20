@@ -87,13 +87,15 @@
         android:layout_height="1dp"
         android:layout_marginTop="28dp"
         android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="417dp"
-        android:layout_height="363dp"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="16dp"
         android:adjustViewBounds="false"
         android:alpha="50"
         android:baselineAlignBottom="false"
@@ -101,8 +103,7 @@
         android:cropToPadding="false"
         android:src="@drawable/custom_setting_bg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/divider"
         app:layout_constraintTop_toBottomOf="@+id/buttonSettings"
         tools:ignore="ImageContrastCheck" />
 
@@ -119,15 +120,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewUserImage" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/custom_goals"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/GroupGoals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="textView6,imageView5,buttonGoal,imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/GroupSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="imageView8,textView9,imageView9,buttonSettings" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/GroupMyBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="imageView6,textView8,imageView7,buttonMyBody" />
 
     <TextView
         android:id="@+id/textView6"
@@ -152,6 +163,21 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+    <Button
+        android:id="@+id/buttonGoal"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="285dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Set your goals here"
+        android:text=" "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -184,6 +210,30 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+    <Button
+        android:id="@+id/buttonMyBody"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:text="Button"
+        android:textColor="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGoal"
+        tools:ignore="DuplicateSpeakableTextCheck,HardcodedText,TextContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/custom_goals"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -218,35 +268,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView9" />
-
-    <Button
-        android:id="@+id/buttonGoal"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="285dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#00FFFFFF"
-        android:contentDescription="Set your goals here"
-        android:text=" "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/buttonMyBody"
-        android:layout_width="291dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:background="#00FFFFFF"
-        android:text="Button"
-        android:textColor="#00FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGoal"
-        tools:ignore="DuplicateSpeakableTextCheck,HardcodedText,TextContrastCheck" />
 
     <Button
         android:id="@+id/buttonSettings"

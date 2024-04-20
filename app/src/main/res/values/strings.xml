@@ -17,5 +17,7 @@
     <string name="settings">Settings</string>
 
     <string name="HomeTitle">Welcome Back,</string>
-
+    <string name="BMI_Text">BMI (Body Mass Index)</string>
+    <string name="BMI_DefaultStatus">You have a normal weight</string>
+    <string name="BMI_ViewMore">View More</string>
 </resources>
