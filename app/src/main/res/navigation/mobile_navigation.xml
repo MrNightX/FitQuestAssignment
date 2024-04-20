@@ -37,4 +37,9 @@
         android:name="com.example.fitquest.ProfilePage"
         android:label="Profile"
         tools:layout="@layout/fragment_profile_page" />
+    <fragment
+        android:id="@+id/workout_ChooseMode"
+        android:name="com.example.fitquest.Workout_ChooseMode"
+        android:label="fragment_workout__choose_mode"
+        tools:layout="@layout/fragment_workout__choose_mode" />
 </navigation>

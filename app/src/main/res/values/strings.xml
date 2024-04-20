@@ -20,4 +20,6 @@
     <string name="BMI_Text">BMI (Body Mass Index)</string>
     <string name="BMI_DefaultStatus">You have a normal weight</string>
     <string name="BMI_ViewMore">View More</string>
+    <string name="recommendedOptionTitle">Recommended</string>
+    <string name="recommendedOptionInfo">Start exercising using our plan. Suitable for beginner.</string>
 </resources>
