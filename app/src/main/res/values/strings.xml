@@ -22,4 +22,52 @@
     <string name="BMI_ViewMore">View More</string>
     <string name="recommendedOptionTitle">Recommended</string>
     <string name="recommendedOptionInfo">Start exercising using our plan. Suitable for beginner.</string>
+
+    <string name="about">About You</string>
+    <string name="about_desc">What\'s your deal? Tell us a bit about yourself</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
+    /SecondStep
+    <string name="age">What is your age?</string>
+    <string name="age_desc">How many trips around the sun have you made? Let us know your age.</string>
+    <string name="age_enter">Enter your age:</string>
+
+    //ThirdStep
+    <string name="weight">What is your weight?</string>
+    <string name="weight_desc">How much do you weigh? \n
+        Don\'t Worry, we won\'t tell anyone</string>
+    <string name="enter_weight">Enter your weight (KG):</string>
+
+    //FourthStep
+    <string name="height">What is your height?</string>
+    <string name="height_desc">How tall are you? \n
+        Stand up straight and measure your height in centimeters.</string>
+    <string name="enter_height">Enter Height (CM):</string>
+
+    //FifthStep
+    <string name="goal">What is your workout goal?</string>
+    <string name="goal_desc">Tell us your aim for your fitness journey </string>
+
+    <string name="goal1">Weight Loss:</string>
+    <string name="goal2">Muscle Gain:</string>
+    <string name="goal3">Flexibility and Mobility:</string>
+    <string name="goal4">Improve Cardiovascular Health:</string>
+    <string name="goal5">Stress Reduction:</string>
+
+    //SixthStep
+    <string name="level">What is your workout level?</string>
+    <string name="level_desc">How skilled are you in the gym?\n
+        Pick your proficiency level</string>
+    <string name="level_1">Beginner</string>
+    <string name="level_2">Intermediate</string>
+    <string name="level_3">Advanced</string>
+
+
+
+
+    //Button Strings
+    <string name="next">Next</string>
+    <string name="back">Return to previous page</string>
+    <string name="complete">Congratulations, you are all set!</string>
 </resources>
