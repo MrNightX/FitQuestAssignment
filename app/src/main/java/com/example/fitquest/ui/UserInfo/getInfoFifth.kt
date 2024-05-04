@@ -1,4 +1,4 @@
-package com.example.fitquest
+package com.example.fitquest.ui.UserInfo
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.fitquest.databinding.FragmentGetInfoFifthBinding
-import com.example.fitquest.databinding.FragmentGetInfoSixthBinding
-import com.example.fitquest.ui.home.HomeFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,17 +16,17 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [getInfoSixth.newInstance] factory method to
+ * Use the [getInfoFifth.newInstance] factory method to
  * create an instance of this fragment.
  */
-class getInfoSixth : Fragment() {
+class getInfoFifth : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private var _binding: FragmentGetInfoSixthBinding? = null
+    private var _binding: FragmentGetInfoFifthBinding? = null
     private val binding get() = _binding!!
-
+    var selected_goal: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -42,37 +40,36 @@ class getInfoSixth : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentGetInfoSixthBinding.inflate(inflater, container, false)
+        _binding = FragmentGetInfoFifthBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonNext6.setOnClickListener {
-            val level = binding.RadioGroupLevel.checkedRadioButtonId
-            if (level != -1) {
-                val selectedLevel = when (level) {
-                    binding.radioButtonLevel1.id -> "Beginner"
-                    binding.radioButtonLevel2.id -> "Intermediate"
-                    binding.radioButtonLevel3.id -> "Advanced"
-                    else -> "" // Default case, should never happen
+        binding.buttonNext5.setOnClickListener {
+            val goal = binding.RadioGroupGoal.checkedRadioButtonId
+            if (goal != -1) {
+                // At least one radio button is selected
+                selected_goal = when (goal) {
+                    binding.radioButtonWeightLoss.id -> "Weight Loss"
+                    binding.radioButtonMuscleGain.id -> "Muscle Gain"
+                    binding.radioButtonFlexMobility.id -> "Flexibility and Mobility"
+                    binding.radioButtonCardioHealth.id -> "Improve Cardiovascular Health"
+                    binding.radioButtonStress.id -> "Reduce Stress"
+                    else -> ""
                 }
 
-                //TODO: Bryan just change this intent to the homepage so after user clicks the button it will move to ur page
-                val intent = Intent(requireContext(), HomeFragment::class.java)
+                val intent = Intent(requireContext(), getInfoSixth::class.java)
                 startActivity(intent)
-
+            } else {
+                // No radio button is selected, show a toast
+                Toast.makeText(requireContext(), "Please select a goal", Toast.LENGTH_SHORT).show()
             }
-            // Handle case if no level is selected
-            else {
-                Toast.makeText(requireContext(), "Please select a proficiency level", Toast.LENGTH_SHORT).show()
-            }
-
-
         }
-        binding.imageButtonBack6.setOnClickListener {
-            val intent = Intent(requireContext(), getInfoFifth::class.java)
+
+        binding.imageButtonBack5.setOnClickListener {
+            val intent = Intent(requireContext(), getInfoFourth::class.java)
             startActivity(intent)
         }
     }
@@ -84,12 +81,12 @@ class getInfoSixth : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment getInfoSixth.
+         * @return A new instance of fragment getInfoFifth.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            getInfoSixth().apply {
+            getInfoFifth().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

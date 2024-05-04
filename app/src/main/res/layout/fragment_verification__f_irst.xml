@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/purplegradientbackground"
     android:visibility="visible"
-    tools:context=".Verification_FIrst">
+    tools:context=".ui.UserInfo.Verification_FIrst">
 
     <TextView
         android:id="@+id/textViewAbout"

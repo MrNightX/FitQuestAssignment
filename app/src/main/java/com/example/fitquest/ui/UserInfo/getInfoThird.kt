@@ -1,4 +1,4 @@
-package com.example.fitquest
+package com.example.fitquest.ui.UserInfo
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
-import com.example.fitquest.databinding.FragmentVerificationFIrstBinding
-import com.example.fitquest.databinding.FragmentVerificationSecondBinding
+import com.example.fitquest.databinding.FragmentGetInfoThirdBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,18 +17,17 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Verification_Second.newInstance] factory method to
+ * Use the [getInfoThird.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Verification_Second : Fragment() {
+class getInfoThird : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private var userAge: Int = 0
-
-    private var _binding: FragmentVerificationSecondBinding? = null
+    private var _binding: FragmentGetInfoThirdBinding? = null
     private val binding get() = _binding!!
+    private var userWeight: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,38 +42,39 @@ class Verification_Second : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentVerificationSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentGetInfoThirdBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.editTextNumberAge.doOnTextChanged { text, _, _, _ ->
-            // Check if the input is not empty and convert it to an integer
+        binding.EditTextNumberWeight.doOnTextChanged{ text, _, _, _ ->
+
             text?.let {
-                val ageText = it.toString()
-                if (ageText.isNotEmpty()) {
-                    userAge = ageText.toInt()
-                } else {
-                    Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
+                val weightText = it.toString()
+                if(weightText.isNotEmpty()){
+                    userWeight=weightText.toInt()
                 }
-
-                binding.buttonNext2.setOnClickListener {
-                    if (userAge > 0) { // Check if userAge is greater than 0
-                        val intent = Intent(requireContext(), getInfoThird::class.java)
-                        startActivity(intent)
-                    }
-                    else{
-                        Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
-                    }
+                else{
+                    Toast.makeText(requireContext(), "Please enter your weight", Toast.LENGTH_SHORT).show()
                 }
+            }
 
+        }
+
+        binding.buttonNext3.setOnClickListener {
+            if (userWeight > 0) { // Check if userAge is greater than 0
+                val intent = Intent(requireContext(), getInfoFourth::class.java)
+                startActivity(intent)
+            }
+            else{
+                Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.imageButtonBack2.setOnClickListener {
-            val intent = Intent(requireContext(), Verification_FIrst::class.java)
+        binding.imageButtonBack3.setOnClickListener {
+            val intent = Intent(requireContext(), Verification_Second::class.java)
             startActivity(intent)
         }
     }
@@ -87,12 +86,12 @@ class Verification_Second : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment Verification_Second.
+         * @return A new instance of fragment getInfoThird.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            Verification_Second().apply {
+            getInfoThird().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

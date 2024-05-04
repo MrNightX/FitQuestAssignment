@@ -1,4 +1,4 @@
-package com.example.fitquest
+package com.example.fitquest.ui.UserInfo
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.fitquest.databinding.FragmentGetInfoFifthBinding
+import androidx.core.widget.doOnTextChanged
 import com.example.fitquest.databinding.FragmentGetInfoFourthBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -17,17 +17,17 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [getInfoFifth.newInstance] factory method to
+ * Use the [getInfoFourth.newInstance] factory method to
  * create an instance of this fragment.
  */
-class getInfoFifth : Fragment() {
+class getInfoFourth : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private var _binding: FragmentGetInfoFifthBinding? = null
+    private var userHeight: Int=0
+    private var _binding: FragmentGetInfoFourthBinding? = null
     private val binding get() = _binding!!
-    var selected_goal: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,40 +41,42 @@ class getInfoFifth : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentGetInfoFifthBinding.inflate(inflater, container, false)
+        _binding = FragmentGetInfoFourthBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonNext5.setOnClickListener {
-            val goal = binding.RadioGroupGoal.checkedRadioButtonId
-            if (goal != -1) {
-                // At least one radio button is selected
-                selected_goal = when (goal) {
-                    binding.radioButtonWeightLoss.id -> "Weight Loss"
-                    binding.radioButtonMuscleGain.id -> "Muscle Gain"
-                    binding.radioButtonFlexMobility.id -> "Flexibility and Mobility"
-                    binding.radioButtonCardioHealth.id -> "Improve Cardiovascular Health"
-                    binding.radioButtonStress.id -> "Reduce Stress"
-                    else -> ""
-                }
+        binding.editTextNumberHeight.doOnTextChanged{ text, _, _, _ ->
 
-                val intent = Intent(requireContext(), getInfoSixth::class.java)
+            text?.let {
+                val heightText = it.toString()
+                if(heightText.isNotEmpty()){
+                    userHeight=heightText.toInt()
+                }
+                else{
+                    Toast.makeText(requireContext(), "Please enter your height", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+
+        binding.buttonNext4.setOnClickListener {
+            if (userHeight > 0) { // Check if userAge is greater than 0
+                val intent = Intent(requireContext(), getInfoFifth::class.java)
                 startActivity(intent)
-            } else {
-                // No radio button is selected, show a toast
-                Toast.makeText(requireContext(), "Please select a goal", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(requireContext(), "Please enter your height", Toast.LENGTH_SHORT).show()
             }
         }
 
-        binding.imageButtonBack5.setOnClickListener {
-            val intent = Intent(requireContext(), getInfoFourth::class.java)
+        binding.imageButtonBack4.setOnClickListener {
+            val intent = Intent(requireContext(), getInfoThird::class.java)
             startActivity(intent)
         }
     }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -82,12 +84,12 @@ class getInfoFifth : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment getInfoFifth.
+         * @return A new instance of fragment getInfoFourth.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            getInfoFifth().apply {
+            getInfoFourth().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

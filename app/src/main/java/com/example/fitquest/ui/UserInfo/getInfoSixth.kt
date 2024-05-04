@@ -1,4 +1,4 @@
-package com.example.fitquest
+package com.example.fitquest.ui.UserInfo
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.widget.doOnTextChanged
-import com.example.fitquest.databinding.FragmentGetInfoThirdBinding
-import com.example.fitquest.databinding.FragmentVerificationSecondBinding
+import com.example.fitquest.databinding.FragmentGetInfoSixthBinding
+import com.example.fitquest.ui.home.HomeFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,17 +17,16 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [getInfoThird.newInstance] factory method to
+ * Use the [getInfoSixth.newInstance] factory method to
  * create an instance of this fragment.
  */
-class getInfoThird : Fragment() {
+class getInfoSixth : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private var _binding: FragmentGetInfoThirdBinding? = null
+    private var _binding: FragmentGetInfoSixthBinding? = null
     private val binding get() = _binding!!
-    private var userWeight: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,39 +41,37 @@ class getInfoThird : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentGetInfoThirdBinding.inflate(inflater, container, false)
+        _binding = FragmentGetInfoSixthBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.EditTextNumberWeight.doOnTextChanged{ text, _, _, _ ->
-
-            text?.let {
-                val weightText = it.toString()
-                if(weightText.isNotEmpty()){
-                    userWeight=weightText.toInt()
+        binding.buttonNext6.setOnClickListener {
+            val level = binding.RadioGroupLevel.checkedRadioButtonId
+            if (level != -1) {
+                val selectedLevel = when (level) {
+                    binding.radioButtonLevel1.id -> "Beginner"
+                    binding.radioButtonLevel2.id -> "Intermediate"
+                    binding.radioButtonLevel3.id -> "Advanced"
+                    else -> "" // Default case, should never happen
                 }
-                else{
-                    Toast.makeText(requireContext(), "Please enter your weight", Toast.LENGTH_SHORT).show()
-                }
-            }
 
-        }
-
-        binding.buttonNext3.setOnClickListener {
-            if (userWeight > 0) { // Check if userAge is greater than 0
-                val intent = Intent(requireContext(), getInfoFourth::class.java)
+                //TODO: Bryan just change this intent to the homepage so after user clicks the button it will move to ur page
+                val intent = Intent(requireContext(), HomeFragment::class.java)
                 startActivity(intent)
-            }
-            else{
-                Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
-            }
-        }
 
-        binding.imageButtonBack3.setOnClickListener {
-            val intent = Intent(requireContext(), Verification_Second::class.java)
+            }
+            // Handle case if no level is selected
+            else {
+                Toast.makeText(requireContext(), "Please select a proficiency level", Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
+        binding.imageButtonBack6.setOnClickListener {
+            val intent = Intent(requireContext(), getInfoFifth::class.java)
             startActivity(intent)
         }
     }
@@ -87,12 +83,12 @@ class getInfoThird : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment getInfoThird.
+         * @return A new instance of fragment getInfoSixth.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            getInfoThird().apply {
+            getInfoSixth().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
