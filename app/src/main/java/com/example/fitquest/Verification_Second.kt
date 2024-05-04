@@ -1,10 +1,15 @@
 package com.example.fitquest
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
+import com.example.fitquest.databinding.FragmentVerificationFIrstBinding
+import com.example.fitquest.databinding.FragmentVerificationSecondBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +26,11 @@ class Verification_Second : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var userAge: Int = 0
+
+    private var _binding: FragmentVerificationSecondBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,7 +44,40 @@ class Verification_Second : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_verification__second, container, false)
+        _binding = FragmentVerificationSecondBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.editTextNumberAge.doOnTextChanged { text, _, _, _ ->
+            // Check if the input is not empty and convert it to an integer
+            text?.let {
+                val ageText = it.toString()
+                if (ageText.isNotEmpty()) {
+                    userAge = ageText.toInt()
+                } else {
+                    Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
+                }
+
+                binding.buttonNext2.setOnClickListener {
+                    if (userAge > 0) { // Check if userAge is greater than 0
+                        val intent = Intent(requireContext(), getInfoThird::class.java)
+                        startActivity(intent)
+                    }
+                    else{
+                        Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            }
+        }
+
+        binding.imageButtonBack2.setOnClickListener {
+            val intent = Intent(requireContext(), Verification_FIrst::class.java)
+            startActivity(intent)
+        }
     }
 
     companion object {

@@ -1,10 +1,15 @@
 package com.example.fitquest
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
+import com.example.fitquest.databinding.FragmentGetInfoFourthBinding
+import com.example.fitquest.databinding.FragmentGetInfoThirdBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +26,9 @@ class getInfoFourth : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var userHeight: Int=0
+    private var _binding: FragmentGetInfoFourthBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,9 +42,42 @@ class getInfoFourth : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_get_info_fourth, container, false)
+        _binding = FragmentGetInfoFourthBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.editTextNumberHeight.doOnTextChanged{ text, _, _, _ ->
+
+            text?.let {
+                val heightText = it.toString()
+                if(heightText.isNotEmpty()){
+                    userHeight=heightText.toInt()
+                }
+                else{
+                    Toast.makeText(requireContext(), "Please enter your height", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+
+        binding.buttonNext4.setOnClickListener {
+            if (userHeight > 0) { // Check if userAge is greater than 0
+                val intent = Intent(requireContext(), getInfoFifth::class.java)
+                startActivity(intent)
+            }
+            else{
+                Toast.makeText(requireContext(), "Please enter your height", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.imageButtonBack4.setOnClickListener {
+            val intent = Intent(requireContext(), getInfoThird::class.java)
+            startActivity(intent)
+        }
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
