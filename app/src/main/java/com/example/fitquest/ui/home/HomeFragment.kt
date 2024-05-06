@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.fitquest.R
-import com.example.fitquest.ui.UserInfo.Verification_FIrst
+import com.example.fitquest.Verification_FIrst
 import com.example.fitquest.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
