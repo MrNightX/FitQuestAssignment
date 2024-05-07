@@ -16,6 +16,23 @@
     <string name="my_body">My Body</string>
     <string name="settings">Settings</string>
 
+    //Terence
+    <string name="register_hello1">Hey There,</string>
+    <string name="register_hello2">Create an Account</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="term_of_use">By continuing you accept our Privacy Policy and Term of Use</string>
+    <string name="register">Register</string>
+    <string name="to_login">Already have an account? Login</string>
+    <string name="login_hello2">Welcome Back</string>
+    <string name="forget_password">Forget Your Password?</string>
+    <string name="login">Login</string>
+    <string name="to_register">Don’t have an account yet? Register</string>
+    <string name="facebook">Facebook</string>
+    <string name="google">Google</string>
+
     <string name="HomeTitle">Welcome Back,</string>
     <string name="BMI_Text">BMI (Body Mass Index)</string>
     <string name="BMI_DefaultStatus">You have a normal weight</string>
