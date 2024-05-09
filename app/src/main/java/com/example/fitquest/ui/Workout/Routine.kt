@@ -3,11 +3,10 @@ package com.example.fitquest.ui.Workout
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Workout_table")
-data class Workout (
+@Entity(tableName = "routine_table")
+data class Routine(
     @PrimaryKey(autoGenerate = true)
+    var routineId: Int,
     var workoutId: Int,
-    var userId: Int,
-    var workoutType: Int
-    //how to inherit
+    var exerciseId: Int,
 )

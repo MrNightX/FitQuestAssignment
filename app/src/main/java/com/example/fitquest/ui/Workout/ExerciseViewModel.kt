@@ -16,7 +16,7 @@ class ExerciseViewModel (application: Application): AndroidViewModel(application
         readAllData = exerciseRepository.readAllData
     }
 
-    fun AddProfile(exercise: Exercise) = viewModelScope.launch {
+    fun AddExercise(exercise: Exercise) = viewModelScope.launch {
         exerciseRepository.AddExercise(exercise)
     }
 }

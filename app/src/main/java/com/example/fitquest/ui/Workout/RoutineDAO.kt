@@ -9,17 +9,17 @@ import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-interface WorkoutDAO {
+interface RoutineDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun AddWorkout(workout: Workout)
+    suspend fun AddRoutine(routine: Routine)
 
-    @Query("SELECT * FROM workout_table ORDER BY workoutId ASC")
-    fun ReadAllData(): LiveData<List<Workout>>
+    @Query("SELECT * FROM routine_table ORDER BY routineId ASC")
+    fun ReadAllData(): LiveData<List<Routine>>
 
     @Update
-    suspend fun updateWorkout(workout: Workout)
+    suspend fun updateRoutine(routine: Routine)
 
     @Delete
-    suspend fun deleteWorkout(workout: Workout)
+    suspend fun deleteRoutine(routine: Routine)
 }
