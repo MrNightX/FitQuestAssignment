@@ -8,32 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.fragment.findNavController
+import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentGetInfoFourthBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [getInfoFourth.newInstance] factory method to
- * create an instance of this fragment.
- */
+
+
 class getInfoFourth : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    private var userHeight: Int=0
+
+    private var userHeight: Float = 0.0f
     private var _binding: FragmentGetInfoFourthBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -47,25 +40,34 @@ class getInfoFourth : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val userAge = arguments?.getInt("userAge")
+        val userGender = arguments?.getInt("userGender")
+        val userWeight = arguments?.getFloat("userWeight")
+        Toast.makeText(context, "Selected gender: $userAge $userGender $userWeight", Toast.LENGTH_SHORT).show()
 
-        binding.editTextNumberHeight.doOnTextChanged{ text, _, _, _ ->
 
-            text?.let {
-                val heightText = it.toString()
-                if(heightText.isNotEmpty()){
-                    userHeight=heightText.toInt()
-                }
-                else{
-                    Toast.makeText(requireContext(), "Please enter your height", Toast.LENGTH_SHORT).show()
-                }
-            }
 
-        }
 
         binding.buttonNext4.setOnClickListener {
+            val heightText = binding.editTextNumberHeight.text.toString()
+
+            userHeight=heightText.toFloat()
+
+
             if (userHeight > 0) { // Check if userAge is greater than 0
-                val intent = Intent(requireContext(), getInfoFifth::class.java)
-                startActivity(intent)
+                val bundle = Bundle()
+                if (userAge != null) {
+                    bundle.putInt("userAge", userAge)
+                }
+                if (userWeight != null) {
+                    bundle.putFloat("userWeight", userWeight)
+                }
+                if (userGender != null) {
+                    bundle.putInt("userGender", userGender)
+                }
+                bundle.putFloat("userHeight" , userHeight)
+                // If a gender is selected, create an Intent to move to the SecondStep activity
+                findNavController().navigate(R.id.action_getInfoFourth_to_getInfoFifth, bundle)
             }
             else{
                 Toast.makeText(requireContext(), "Please enter your height", Toast.LENGTH_SHORT).show()
@@ -77,23 +79,5 @@ class getInfoFourth : Fragment() {
             startActivity(intent)
         }
     }
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment getInfoFourth.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            getInfoFourth().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

@@ -9,4 +9,8 @@ class UserRepository(private val userDAO: UserDAO) {
     suspend fun AddUser(user: User){
         userDAO.AddUser(user)
     }
+
+    suspend fun GetUserByName(userName: String) : LiveData<User> {
+        return userDAO.getUserByName(userName)
+    }
 }

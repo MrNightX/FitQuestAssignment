@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/getInfoFirst">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -38,7 +38,7 @@
         tools:layout="@layout/fragment_workout_page" />
     <fragment
         android:id="@+id/profilePage"
-        android:name="com.example.fitquest.ProfilePage"
+        android:name="com.example.fitquest.ui.UserInfo.ProfilePage"
         android:label="Profile"
         tools:layout="@layout/fragment_profile_page" />
     <fragment
@@ -53,8 +53,11 @@
         tools:layout="@layout/fragment_verification__f_irst" >
         <action
             android:id="@+id/action_getInfoFirst_to_getInfoSecond"
-            app:destination="@id/getInfoSecond" />
+            app:destination="@id/getInfoSecond">
+
+        </action>
     </fragment>
+
     <fragment
         android:id="@+id/getInfoSecond"
         android:name="com.example.fitquest.ui.UserInfo.Verification_Second"
@@ -63,6 +66,7 @@
         <action
             android:id="@+id/action_getInfoSecond_to_getInfoThird"
             app:destination="@id/getInfoThird" />
+
     </fragment>
     <fragment
         android:id="@+id/getInfoThird"
@@ -97,7 +101,17 @@
         android:label="fragment_get_info_sixth"
         tools:layout="@layout/fragment_get_info_sixth" >
         <action
-            android:id="@+id/action_getInfoSixth_to_navigation_home"
+            android:id="@+id/action_getInfoSixth_to_register"
+            app:destination="@id/register" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.fitquest.ui.UserInfo.Register"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_register_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+
 </navigation>

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentGetInfoFifthBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,18 +23,14 @@ private const val ARG_PARAM2 = "param2"
  */
 class getInfoFifth : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
 
     private var _binding: FragmentGetInfoFifthBinding? = null
     private val binding get() = _binding!!
-    var selected_goal: String = ""
+    var selected_goal: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -46,22 +44,51 @@ class getInfoFifth : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val userAge = arguments?.getInt("userAge")
+        val userGender = arguments?.getInt("userGender")
+        val userWeight = arguments?.getFloat("userWeight")
+        val userHeight = arguments?.getFloat("userHeight")
+        Toast.makeText(context, "Selected gender: $userAge $userGender $userWeight $userHeight", Toast.LENGTH_SHORT).show()
+        /*
+        *        "Weight Loss" - 0
+                 "Muscle Gain" - 1
+                 "Flexibility and Mobility" - 2
+                 "Improve Cardiovascular Health" - 3
+                 "Reduce Stress" - 4*/
         binding.buttonNext5.setOnClickListener {
             val goal = binding.RadioGroupGoal.checkedRadioButtonId
-            if (goal != -1) {
-                // At least one radio button is selected
-                selected_goal = when (goal) {
-                    binding.radioButtonWeightLoss.id -> "Weight Loss"
-                    binding.radioButtonMuscleGain.id -> "Muscle Gain"
-                    binding.radioButtonFlexMobility.id -> "Flexibility and Mobility"
-                    binding.radioButtonCardioHealth.id -> "Improve Cardiovascular Health"
-                    binding.radioButtonStress.id -> "Reduce Stress"
-                    else -> ""
-                }
 
-                val intent = Intent(requireContext(), getInfoSixth::class.java)
-                startActivity(intent)
+            selected_goal = when(goal){
+                binding.radioButtonWeightLoss.id -> 0
+                binding.radioButtonMuscleGain.id -> 1
+                binding.radioButtonFlexMobility.id -> 2
+                binding.radioButtonCardioHealth.id -> 3
+                binding.radioButtonStress.id -> 4
+                else -> {
+                    Toast.makeText(requireContext(), "Please select a goal", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
+
+
+            Toast.makeText(context, "Selected gender: $selected_goal", Toast.LENGTH_SHORT).show()
+            if (goal > -1) {
+                val bundle = Bundle()
+                if (userAge != null) {
+                    bundle.putInt("userAge", userAge)
+                }
+                if (userWeight != null) {
+                    bundle.putFloat("userWeight", userWeight)
+                }
+                if (userGender != null) {
+                    bundle.putInt("userGender", userGender)
+                }
+                if (userHeight != null) {
+                    bundle.putFloat("userHeight" , userHeight)
+                }
+                bundle.putInt("userGoal", selected_goal)
+                // If a gender is selected, create an Intent to move to the SecondStep activity
+                findNavController().navigate(R.id.action_getInfoFifth_to_getInfoSixth, bundle)
             } else {
                 // No radio button is selected, show a toast
                 Toast.makeText(requireContext(), "Please select a goal", Toast.LENGTH_SHORT).show()
@@ -74,23 +101,5 @@ class getInfoFifth : Fragment() {
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment getInfoFifth.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            getInfoFifth().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

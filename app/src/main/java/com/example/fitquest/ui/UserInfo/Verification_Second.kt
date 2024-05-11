@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.fragment.findNavController
+import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentVerificationSecondBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -49,29 +51,26 @@ class Verification_Second : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val userGender = arguments?.getInt("userGender")
+        Toast.makeText(context, "Selected gender: $userGender", Toast.LENGTH_SHORT).show()
 
-        binding.editTextNumberAge.doOnTextChanged { text, _, _, _ ->
-            // Check if the input is not empty and convert it to an integer
-            text?.let {
-                val ageText = it.toString()
-                if (ageText.isNotEmpty()) {
-                    userAge = ageText.toInt()
-                } else {
-                    Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
-                }
 
                 binding.buttonNext2.setOnClickListener {
+                    userAge = binding.editTextNumberAge.text.toString().toInt()
                     if (userAge > 0) { // Check if userAge is greater than 0
-                        val intent = Intent(requireContext(), getInfoThird::class.java)
-                        startActivity(intent)
+                        val bundle = Bundle()
+                        bundle.putInt("userAge", userAge)
+                        if (userGender != null) {
+                            bundle.putInt("userGender", userGender)
+                        }
+                        // If a gender is selected, create an Intent to move to the SecondStep activity
+                        findNavController().navigate(R.id.action_getInfoSecond_to_getInfoThird, bundle)
                     }
                     else{
                         Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
                     }
                 }
 
-            }
-        }
 
         binding.imageButtonBack2.setOnClickListener {
             val intent = Intent(requireContext(), Verification_FIrst::class.java)

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentVerificationFIrstBinding
 
 
@@ -20,7 +22,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class Verification_FIrst : Fragment() {
 
-    private var userGender: String? = null
+    private var userGender: Int = -1
     private var _binding: FragmentVerificationFIrstBinding? = null
     private val binding get() = _binding!!
 
@@ -46,19 +48,25 @@ class Verification_FIrst : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.imageButtonMale.setOnClickListener {
-            saveUserGender("Male")
+            saveUserGender(0)
+            userGender = 0
+
         }
 
         binding.imageButtonFemale.setOnClickListener {
-            saveUserGender("Female")
+            saveUserGender(1)
+            userGender = 1
         }
 
         binding.buttonNext.setOnClickListener {
             // Check if the user has selected a gender before proceeding
-            if (userGender != null) {
+            if (userGender > -1) {
+                val bundle = Bundle()
+                val user : User;
+
+                bundle.putInt("userGender", userGender)
                 // If a gender is selected, create an Intent to move to the SecondStep activity
-                val intent = Intent(requireContext(), Verification_Second::class.java)
-                startActivity(intent)
+               findNavController().navigate(R.id.action_getInfoFirst_to_getInfoSecond, bundle)
             } else {
                 // If no gender is selected, display a message to prompt the user to select a gender
                 Toast.makeText(requireContext(), "Please select a gender", Toast.LENGTH_SHORT).show()
@@ -72,18 +80,17 @@ class Verification_FIrst : Fragment() {
         }*/
     }
 
-    private fun saveUserGender(gender: String) {
+    private fun saveUserGender(gender: Int) {
         // Store the user's gender in the userGender variable
-        userGender = gender
 
         // Update the UI to reflect the selected gender
         when (gender) {
-            "Male" -> {
+            0 -> {
                 binding.imageButtonMale.isSelected = true
                 binding.imageButtonFemale.isSelected = false
             }
 
-            "Female" -> {
+            1 -> {
                 binding.imageButtonMale.isSelected = false
                 binding.imageButtonFemale.isSelected = true
             }
@@ -93,23 +100,5 @@ class Verification_FIrst : Fragment() {
 
 
     }
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Verification_FIrst.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Verification_FIrst().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentGetInfoSixthBinding
 import com.example.fitquest.ui.home.HomeFragment
 
@@ -22,18 +25,14 @@ private const val ARG_PARAM2 = "param2"
  */
 class getInfoSixth : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+    private var selectedLvl : Int = -1
     private var _binding: FragmentGetInfoSixthBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -48,19 +47,62 @@ class getInfoSixth : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val userAge = arguments?.getInt("userAge")
+        val userGender = arguments?.getInt("userGender")
+        val userWeight = arguments?.getFloat("userWeight")
+        val userHeight = arguments?.getFloat("userHeight")
+        val userGoal = arguments?.getInt("userGoal")
+        Toast.makeText(context, "Selected gender: $userAge $userGender $userWeight $userHeight $userGoal", Toast.LENGTH_SHORT).show()
         binding.buttonNext6.setOnClickListener {
             val level = binding.RadioGroupLevel.checkedRadioButtonId
-            if (level != -1) {
-                val selectedLevel = when (level) {
-                    binding.radioButtonLevel1.id -> "Beginner"
-                    binding.radioButtonLevel2.id -> "Intermediate"
-                    binding.radioButtonLevel3.id -> "Advanced"
-                    else -> "" // Default case, should never happen
+
+            selectedLvl = when(level){
+                binding.radioButtonLevel1.id -> 0
+                binding.radioButtonLevel2.id -> 1
+                binding.radioButtonLevel3.id -> 2
+                else -> {
+                    Toast.makeText(requireContext(), "Please select a goal", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
+            /*
+            *       "Beginner" - 0
+                    "Intermediate" - 1
+                    "Advanced" - 2
+                    *    val bundle = Bundle()
+                if (userAge != null) {
+                    bundle.putInt("userAge", userAge)
+                }
+                if (userWeight != null) {
+                    bundle.putFloat("userWeight", userWeight)
+                }
+                if (userGender != null) {
+                    bundle.putInt("userGender", userGender)
+                }
+                if (userHeight != null) {
+                    bundle.putFloat("userHeight" , userHeight)
+                }
+                if (userGoal != null) {
+                    bundle.putInt("userGoal", userGoal)
                 }
 
+                bundle.putInt("userLevel", level)*/
+            if (selectedLvl != -1) {
+                val bundle = Bundle()
+                Toast.makeText(context, "Selected gender: $userAge $userGender $userWeight $userHeight $userGoal $selectedLvl", Toast.LENGTH_SHORT).show()
+                // If a gender is selected, create an Intent to move to the SecondStep activity
+                if (userAge != null && userGender != null && userHeight != null && userWeight != null && userGoal != null) {
+
+                        bundle.putInt("userAge", userAge)
+                        bundle.putFloat("userWeight", userWeight)
+                        bundle.putInt("userGender", userGender)
+                        bundle.putFloat("userHeight" , userHeight)
+                        bundle.putInt("userGoal", userGoal)
+                        bundle.putInt("UserLvl", selectedLvl)
+                }
+                findNavController().navigate(R.id.action_getInfoSixth_to_register,bundle)
+
                 //TODO: Bryan just change this intent to the homepage so after user clicks the button it will move to ur page
-                val intent = Intent(requireContext(), HomeFragment::class.java)
-                startActivity(intent)
 
             }
             // Handle case if no level is selected
