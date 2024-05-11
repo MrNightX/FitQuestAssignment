@@ -36,6 +36,9 @@
     <string name="HomeTitle">Welcome Back,</string>
     <string name="BMI_Text">BMI (Body Mass Index)</string>
     <string name="BMI_DefaultStatus">You have a normal weight</string>
+    <string name="BMI_UnderStatus">You are underweight</string>
+    <string name="BMI_OverStatus">You are overweight</string>
+
     <string name="BMI_ViewMore">View More</string>
     <string name="recommendedOptionTitle">Recommended</string>
     <string name="recommendedOptionInfo">Start exercising using our plan. Suitable for beginner.</string>

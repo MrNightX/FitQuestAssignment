@@ -21,4 +21,8 @@ class UserViewModel (application: Application): AndroidViewModel(application){
         userRepository.AddUser(user)
     }
 
+    fun getUserByUsername(username: String): LiveData<User> {
+        return userRepository.getUserByUsername(username)
+    }
+
 }
