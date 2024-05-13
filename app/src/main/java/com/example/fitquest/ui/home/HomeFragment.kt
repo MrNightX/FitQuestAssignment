@@ -19,6 +19,7 @@ import kotlin.math.pow
 class HomeFragment : Fragment() {
     private lateinit var mUserViewModel: UserViewModel
     private var _binding: FragmentHomeBinding? = null
+
     private var username : String = ""
     private var bmi : Float = 0.0f
     private var heightInM : Float = 0.0f
@@ -26,13 +27,13 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
@@ -43,7 +44,7 @@ class HomeFragment : Fragment() {
         username = arguments?.getString("username").toString()
 
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        mUserViewModel.getUserByUsername("Bryan Ang").observe(viewLifecycleOwner, Observer { user ->
+        mUserViewModel.getUserByUsername(username).observe(viewLifecycleOwner, Observer { user ->
              heightInM = (user.height / 100).pow(2)
             bmi = user.weight / (heightInM)
 
@@ -56,13 +57,15 @@ class HomeFragment : Fragment() {
 
             binding.textViewHomeUserName.text = user.username
             binding.textViewBMIValue.text = String.format("%.2f", bmi)
+
         })
 
 
-        val navController = findNavController()
+
 
         binding.testButtonGetInfo.setOnClickListener {
-            navController.navigate(R.id.getInfoFirst)
+            val navController = findNavController()
+            navController.navigate(R.id.login_In)
         }
 
 

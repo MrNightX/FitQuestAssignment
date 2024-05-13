@@ -21,6 +21,11 @@ interface UserDAO {
     @Query("SELECT * FROM user_table WHERE username = :username")
     fun getUserByUsername(username: String): LiveData<User>
 
+    @Query("SELECT * FROM user_table WHERE email = :email")
+    fun getUserByEmail(email: String): LiveData<User>
+    @Query("SELECT * FROM user_table WHERE email = :email AND password = :password")
+    fun getUserByEmailPass(email: String,password :String): LiveData<User>
+
     @Update
     suspend fun updateProfile(user: User)
 
