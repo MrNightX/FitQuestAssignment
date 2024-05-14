@@ -62,7 +62,7 @@ class Verification_FIrst : Fragment() {
             // Check if the user has selected a gender before proceeding
             if (userGender > -1) {
                 val bundle = Bundle()
-                val user : User;
+
 
                 bundle.putInt("userGender", userGender)
                 // If a gender is selected, create an Intent to move to the SecondStep activity

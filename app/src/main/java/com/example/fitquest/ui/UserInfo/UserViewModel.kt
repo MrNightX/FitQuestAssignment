@@ -25,4 +25,12 @@ class UserViewModel (application: Application): AndroidViewModel(application){
         return userRepository.getUserByUsername(username)
     }
 
+    fun getUserByEmail(email: String): LiveData<User> {
+        return userRepository.getUserByEmail(email)
+    }
+
+    fun getUserByEmailPass(email: String,password:String): LiveData<User> {
+        return userRepository.getUserByEmailPass(email,password)
+    }
+
 }
