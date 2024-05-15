@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout10"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PerExerciseFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+
+        android:id="@+id/buttonBackProfile"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="src_over"
+        android:contentDescription="@string/back_button"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:textAlignment="center"
+        android:translationX="10dp"
+        app:cornerRadius="100dp"
+        app:icon="@drawable/outline_arrow_back_ios_new_24"
+        app:iconPadding="8dp"
+        app:iconTint="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#000000"
+        app:strokeWidth="1dp"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="[ExerciseName]"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintStart_toEndOf="@+id/buttonBackProfile"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="100dp"
+        app:icon="@drawable/rounded_atr_24"
+        app:iconPadding="10dp"
+        app:iconTint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintStart_toEndOf="@+id/buttonBackProfile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#000000"
+        app:strokeWidth="1dp"
+        tools:text="Option" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="142dp"
+        android:layout_height="142dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/blankexerciseimage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="Exercise Type"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView7"
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Target Body"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="Calorie Burned"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+    <ImageView
+        android:id="@+id/imageExerciseType"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/rounded_adjust_24"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <ImageView
+        android:id="@+id/imageTargetBody"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/rounded_adjust_24"
+        app:layout_constraintEnd_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/exercise_calorie_burned"
+        app:layout_constraintEnd_toEndOf="@+id/textView18"
+        app:layout_constraintStart_toStartOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/textViewTypeName"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="[TypeName]"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/imageExerciseType"
+        app:layout_constraintStart_toStartOf="@+id/imageExerciseType"
+        app:layout_constraintTop_toBottomOf="@+id/imageExerciseType" />
+
+    <TextView
+        android:id="@+id/textViewBodyPartName"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="[BodyPartName]"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="@+id/imageTargetBody"
+        app:layout_constraintStart_toStartOf="@+id/imageTargetBody"
+        app:layout_constraintTop_toBottomOf="@+id/imageTargetBody" />
+
+    <TextView
+        android:id="@+id/textViewCalorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[0] kcal"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintStart_toStartOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Information"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTypeName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewTypeName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTypeName" />
+
+    <TextView
+        android:id="@+id/textViewExerciseInfo"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/textView18"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

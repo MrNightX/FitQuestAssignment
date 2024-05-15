@@ -117,5 +117,10 @@
             android:id="@+id/action_register_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/perExerciseFragment"
+        android:name="com.example.fitquest.PerExerciseFragment"
+        android:label="fragment_per_exercise"
+        tools:layout="@layout/fragment_per_exercise" />
 
 </navigation>
