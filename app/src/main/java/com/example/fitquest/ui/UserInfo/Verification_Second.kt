@@ -73,8 +73,7 @@ class Verification_Second : Fragment() {
 
 
         binding.imageButtonBack2.setOnClickListener {
-            val intent = Intent(requireContext(), Verification_FIrst::class.java)
-            startActivity(intent)
+
         }
     }
 

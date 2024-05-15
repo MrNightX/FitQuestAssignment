@@ -11,6 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentRegisterBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 
 class Register : Fragment() {
@@ -18,12 +21,14 @@ class Register : Fragment() {
     private lateinit var mUserViewModel: UserViewModel
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+    private lateinit var auth: FirebaseAuth
     private var username : String = ""
     private var password : String = ""
     private var phoneNum : String = ""
     private var email : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = Firebase.auth
 
     }
 
@@ -47,7 +52,7 @@ class Register : Fragment() {
         val userHeight = arguments?.getFloat("userHeight")
         val userGoal = arguments?.getInt("userGoal")
         val userLvl = arguments?.getInt("userLvl")
-        binding.buttonLogin.setOnClickListener {
+        binding.buttonRegister.setOnClickListener {
             username = binding.editTextRegisterUserFullName.text.toString()
             phoneNum = binding.editTextRegisterPhone.text.toString()
             email = binding.editTextRegisterEmail.text.toString()

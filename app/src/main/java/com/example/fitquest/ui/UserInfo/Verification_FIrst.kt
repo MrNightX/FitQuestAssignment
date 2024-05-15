@@ -22,6 +22,10 @@ private const val ARG_PARAM2 = "param2"
  */
 class Verification_FIrst : Fragment() {
 
+    companion object {
+        fun newInstance() = Verification_FIrst()
+    }
+
     private var userGender: Int = -1
     private var _binding: FragmentVerificationFIrstBinding? = null
     private val binding get() = _binding!!
