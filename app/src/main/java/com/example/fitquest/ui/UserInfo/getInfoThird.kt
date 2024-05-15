@@ -67,7 +67,7 @@ class getInfoThird : Fragment() {
                 }
                 bundle.putFloat("userWeight", userWeight)
                 // If a gender is selected, create an Intent to move to the SecondStep activity
-                findNavController().navigate(R.id.action_getInfoThird_to_getInfoFourth, bundle)
+                findNavController().navigate(R.id.getInfoFourth, bundle)
             }
             else{
                 Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()

@@ -100,7 +100,7 @@ class getInfoSixth : Fragment() {
                         bundle.putInt("userGoal", userGoal)
                         bundle.putInt("UserLvl", selectedLvl)
                 }
-                findNavController().navigate(R.id.action_getInfoSixth_to_register,bundle)
+                findNavController().navigate(R.id.registerFragment,bundle)
 
                 //TODO: Bryan just change this intent to the homepage so after user clicks the button it will move to ur page
 

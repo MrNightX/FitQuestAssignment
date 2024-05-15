@@ -70,7 +70,7 @@ class Verification_FIrst : Fragment() {
 
                 bundle.putInt("userGender", userGender)
                 // If a gender is selected, create an Intent to move to the SecondStep activity
-               findNavController().navigate(R.id.action_getInfoFirst_to_getInfoSecond, bundle)
+               findNavController().navigate(R.id.verification_Second, bundle)
             } else {
                 // If no gender is selected, display a message to prompt the user to select a gender
                 Toast.makeText(requireContext(), "Please select a gender", Toast.LENGTH_SHORT).show()

@@ -88,7 +88,7 @@ class getInfoFifth : Fragment() {
                 }
                 bundle.putInt("userGoal", selected_goal)
                 // If a gender is selected, create an Intent to move to the SecondStep activity
-                findNavController().navigate(R.id.action_getInfoFifth_to_getInfoSixth, bundle)
+                findNavController().navigate(R.id.getInfoSixth, bundle)
             } else {
                 // No radio button is selected, show a toast
                 Toast.makeText(requireContext(), "Please select a goal", Toast.LENGTH_SHORT).show()
