@@ -1,5 +1,6 @@
 package com.example.fitquest.ui.UserInfo
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -93,6 +94,8 @@ class Register : Fragment() {
                                 .addOnSuccessListener {
 
                                     Toast.makeText(requireContext(),"Created",Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(requireContext(),LoginActivity::class.java)
+                                    startActivity(intent)
                                 }
                                 .addOnFailureListener {
                                     Toast.makeText(requireContext(),"Fail",Toast.LENGTH_SHORT).show()
@@ -106,8 +109,14 @@ class Register : Fragment() {
                     }
                 })
 
-            }
         }
+
+        binding.textViewToLogin.setOnClickListener {
+            val intent = Intent(requireContext(),LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
 
     private fun registerUser(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
@@ -124,6 +133,6 @@ class Register : Fragment() {
             }
     }
 
-    }
+}
 
 

@@ -9,11 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="com.example.fitquest.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_navigation_home_to_getInfoFirst"
-            app:destination="@id/getInfoFirst" />
-    </fragment>
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -50,73 +46,7 @@
         android:name="com.example.fitquest.ui.Workout.Workout_ChooseMode"
         android:label="fragment_workout__choose_mode"
         tools:layout="@layout/fragment_workout__choose_mode" />
-    <fragment
-        android:id="@+id/getInfoFirst"
-        android:name="com.example.fitquest.ui.UserInfo.Verification_FIrst"
-        android:label="getInfoFirst"
-        tools:layout="@layout/fragment_verification__f_irst" >
-        <action
-            android:id="@+id/action_getInfoFirst_to_getInfoSecond"
-            app:destination="@id/getInfoSecond">
 
-        </action>
-    </fragment>
-
-    <fragment
-        android:id="@+id/getInfoSecond"
-        android:name="com.example.fitquest.ui.UserInfo.Verification_Second"
-        android:label="getInfoSecond"
-        tools:layout="@layout/fragment_verification__second" >
-        <action
-            android:id="@+id/action_getInfoSecond_to_getInfoThird"
-            app:destination="@id/getInfoThird" />
-
-    </fragment>
-    <fragment
-        android:id="@+id/getInfoThird"
-        android:name="com.example.fitquest.ui.UserInfo.getInfoThird"
-        android:label="fragment_get_info_third"
-        tools:layout="@layout/fragment_get_info_third" >
-        <action
-            android:id="@+id/action_getInfoThird_to_getInfoFourth"
-            app:destination="@id/getInfoFourth" />
-    </fragment>
-    <fragment
-        android:id="@+id/getInfoFourth"
-        android:name="com.example.fitquest.ui.UserInfo.getInfoFourth"
-        android:label="fragment_get_info_fourth"
-        tools:layout="@layout/fragment_get_info_fourth" >
-        <action
-            android:id="@+id/action_getInfoFourth_to_getInfoFifth"
-            app:destination="@id/getInfoFifth" />
-    </fragment>
-    <fragment
-        android:id="@+id/getInfoFifth"
-        android:name="com.example.fitquest.ui.UserInfo.getInfoFifth"
-        android:label="fragment_get_info_fifth"
-        tools:layout="@layout/fragment_get_info_fifth" >
-        <action
-            android:id="@+id/action_getInfoFifth_to_getInfoSixth"
-            app:destination="@id/getInfoSixth" />
-    </fragment>
-    <fragment
-        android:id="@+id/getInfoSixth"
-        android:name="com.example.fitquest.ui.UserInfo.getInfoSixth"
-        android:label="fragment_get_info_sixth"
-        tools:layout="@layout/fragment_get_info_sixth" >
-        <action
-            android:id="@+id/action_getInfoSixth_to_register"
-            app:destination="@id/register" />
-    </fragment>
-    <fragment
-        android:id="@+id/register"
-        android:name="com.example.fitquest.ui.UserInfo.Register"
-        android:label="Register"
-        tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_register_to_navigation_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
     <fragment
         android:id="@+id/perExerciseFragment"
         android:name="com.example.fitquest.PerExerciseFragment"

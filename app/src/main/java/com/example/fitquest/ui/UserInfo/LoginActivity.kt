@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.fitquest.MainActivity
 import com.example.fitquest.R
 import com.example.fitquest.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -57,7 +58,10 @@ class LoginActivity : AppCompatActivity() {
             }
 
             signIn(email,password)
-            return@setOnClickListener
+            val intent = Intent(this,MainActivity::class.java)
+            intent.putExtra("email",email)
+            startActivity(intent)
+            finish()
         }
 
         binding.textViewToRegister.setOnClickListener {
