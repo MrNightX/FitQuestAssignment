@@ -11,7 +11,7 @@
 
     <Button
 
-        android:id="@+id/buttonBackProfile"
+        android:id="@+id/buttonBackExercise"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
@@ -34,7 +34,7 @@
         tools:ignore="RedundantDescriptionCheck" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewExerciseName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -42,7 +42,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/buttonBackProfile"
+        app:layout_constraintStart_toEndOf="@+id/buttonBackExercise"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -59,14 +59,14 @@
         app:iconTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.939"
-        app:layout_constraintStart_toEndOf="@+id/buttonBackProfile"
+        app:layout_constraintStart_toEndOf="@+id/buttonBackExercise"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="#000000"
         app:strokeWidth="1dp"
         tools:text="Option" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/imageViewCurrentExercise"
         android:layout_width="142dp"
         android:layout_height="142dp"
         android:layout_marginTop="60dp"
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewExerciseName" />
 
     <TextView
         android:id="@+id/textView4"
@@ -99,9 +99,9 @@
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView12"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+        app:layout_constraintEnd_toEndOf="@+id/imageViewCurrentExercise"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCurrentExercise"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewCurrentExercise" />
 
     <TextView
         android:id="@+id/textView18"
@@ -121,7 +121,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/rounded_adjust_24"
+        android:src="@drawable/exercise_difficulty"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -131,7 +131,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/rounded_adjust_24"
+        android:src="@drawable/exercise_bodypart"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -161,7 +161,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="[BodyPartName]"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/imageTargetBody"
         app:layout_constraintStart_toStartOf="@+id/imageTargetBody"
         app:layout_constraintTop_toBottomOf="@+id/imageTargetBody" />
@@ -198,5 +198,23 @@
         app:layout_constraintEnd_toEndOf="@+id/textView18"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <Button
+        android:id="@+id/buttonTestExercise1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Inject 1"
+        app:layout_constraintStart_toStartOf="@+id/textViewExerciseInfo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewExerciseInfo" />
+
+    <Button
+        android:id="@+id/buttonTestExercise2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Inject 2"
+        app:layout_constraintEnd_toEndOf="@+id/textViewExerciseInfo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewExerciseInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
