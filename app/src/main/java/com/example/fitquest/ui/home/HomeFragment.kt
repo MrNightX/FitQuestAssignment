@@ -58,7 +58,8 @@ class HomeFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (userSnapshot in snapshot.children) {
                         username = userSnapshot.child("username").getValue(String::class.java)!!
-                        
+
+
                         binding.textViewHomeUserName.text = username
                     }
                 }
