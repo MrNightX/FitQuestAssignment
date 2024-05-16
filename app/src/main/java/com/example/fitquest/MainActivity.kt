@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,7 +29,9 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         val bundle = Bundle()
         bundle.putString("email", email)
+        navController.setGraph(navController.graph, bundle)
         navController.navigate(R.id.navigation_home, bundle)
+
 
 
 

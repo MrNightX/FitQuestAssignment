@@ -35,17 +35,15 @@ class ProfilePage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        mUserViewModel.getUserByEmailPass("bryn@gmail.com","12345").observe(viewLifecycleOwner, Observer { user ->
+        val email = arguments?.getString("email")
+        //mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        //mUserViewModel.getUserByEmailPass("bryn@gmail.com","12345").observe(viewLifecycleOwner, Observer { user ->
 
-            if(user != null) {
-                val bundle = Bundle()
-                binding.textViewUserName.text = user.username
-            }else{
-                binding.textViewUserName.text = "User not found"
-            }
 
-        })
+                binding.textViewUserName.text = email
+
+
+
     }
 
 

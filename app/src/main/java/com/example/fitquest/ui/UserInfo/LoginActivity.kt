@@ -58,10 +58,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             signIn(email,password)
-            val intent = Intent(this,MainActivity::class.java)
-            intent.putExtra("email",email)
-            startActivity(intent)
-            finish()
+
         }
 
         binding.textViewToRegister.setOnClickListener {
@@ -82,11 +79,15 @@ class LoginActivity : AppCompatActivity() {
                         "Task Successful",
                         Toast.LENGTH_SHORT,
                     ).show()
+                    val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                    intent.putExtra("email",email)
+                    startActivity(intent)
+                    finish()
                 } else {
-                    println(task.exception.toString())
+
                     Toast.makeText(
                         this@LoginActivity,
-                        task.exception.toString(),
+                        "Task Failed",
                         Toast.LENGTH_SHORT,
                     ).show()
                 }
