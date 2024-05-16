@@ -14,6 +14,11 @@ import com.example.fitquest.databinding.FragmentRegisterBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class Register : Fragment() {
@@ -26,9 +31,12 @@ class Register : Fragment() {
     private var password : String = ""
     private var phoneNum : String = ""
     private var email : String = ""
+
+    private lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        auth = Firebase.auth
+        //auth = Firebase.auth
 
     }
 
@@ -44,6 +52,7 @@ class Register : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        database = FirebaseDatabase.getInstance().reference
 
 
         val userAge = arguments?.getInt("userAge")
@@ -53,14 +62,46 @@ class Register : Fragment() {
         val userGoal = arguments?.getInt("userGoal")
         val userLvl = arguments?.getInt("userLvl")
         binding.buttonRegister.setOnClickListener {
+            val userId = database.push().key
             username = binding.editTextRegisterUserFullName.text.toString()
             phoneNum = binding.editTextRegisterPhone.text.toString()
             email = binding.editTextRegisterEmail.text.toString()
             password = binding.editTextRegisterPassword.text.toString()
+            val user:User = User("Jason",0,25,"0129889166", 161.0f,45.0f,0,0,email,password)
+            val usersRef = database.child("users")
 
-            if (username.isEmpty() || phoneNum.isEmpty() || email.isEmpty() || password.isEmpty()) {
+
+            usersRef.orderByChild("email").equalTo(user.email)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // Email already exists, show error message or handle accordingly
+                            // For example, you can display a Toast message
+                            Toast.makeText(requireContext(), "Email already exists", Toast.LENGTH_SHORT).show()
+                        } else {
+                            // Email doesn't exist, proceed to save the user
+
+                            usersRef.child(userId!!).setValue(user)
+                                .addOnSuccessListener {
+
+                                    Toast.makeText(requireContext(),"Created",Toast.LENGTH_SHORT).show()
+                                }
+                                .addOnFailureListener {
+                                    Toast.makeText(requireContext(),"Fail",Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        // Handle errors
+                        Toast.makeText(requireContext(),"Canceled",Toast.LENGTH_SHORT).show()
+                    }
+                })
+
+            /*if (username.isEmpty() || phoneNum.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
+
             }
 
             if (CheckEmail(email)) {
@@ -91,7 +132,7 @@ class Register : Fragment() {
             }else{
                 Toast.makeText(requireContext(), "Email Existed", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
+            }*/
 
             }
         }
