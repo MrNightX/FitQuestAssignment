@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener
 
 class Register : Fragment() {
     // TODO: Rename and change types of parameters
+
     private lateinit var mUserViewModel: UserViewModel
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
@@ -53,7 +54,7 @@ class Register : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         database = FirebaseDatabase.getInstance().reference
-
+        auth = FirebaseAuth.getInstance()
 
         val userAge = arguments?.getInt("userAge")
         val userGender = arguments?.getInt("userGender")
@@ -67,7 +68,14 @@ class Register : Fragment() {
             phoneNum = binding.editTextRegisterPhone.text.toString()
             email = binding.editTextRegisterEmail.text.toString()
             password = binding.editTextRegisterPassword.text.toString()
-            val user:User = User("Jason",0,25,"0129889166", 161.0f,45.0f,0,0,email,password)
+
+            if (username.isEmpty() || phoneNum.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+
+            }
+
+            val user:User = User(username,userGender!!,userAge!!,phoneNum, userHeight!!,userWeight!!,userGoal!!,userLvl!!,email,password)
             val usersRef = database.child("users")
 
 
@@ -80,7 +88,7 @@ class Register : Fragment() {
                             Toast.makeText(requireContext(), "Email already exists", Toast.LENGTH_SHORT).show()
                         } else {
                             // Email doesn't exist, proceed to save the user
-
+                            registerUser(user.email, user.password)
                             usersRef.child(userId!!).setValue(user)
                                 .addOnSuccessListener {
 
@@ -98,66 +106,23 @@ class Register : Fragment() {
                     }
                 })
 
-            /*if (username.isEmpty() || phoneNum.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-
-            }
-
-            if (CheckEmail(email)) {
-                if (userAge != null && userGender != null && userHeight != null && userWeight != null && userGoal != null && userLvl != null) {
-
-                            val user = User(
-                                username = username,
-                                password = password,
-                                email = email,
-                                gender = userGender,
-                                age = userAge,
-                                contactNum = phoneNum,
-                                height = userHeight,
-                                weight = userWeight,
-                                questionWOGoal = userGoal,
-                                questionWOLvl = userLvl
-                            )
-                            mUserViewModel.AddUser(user)
-                            val bundle = Bundle()
-                            bundle.putString("username", username)
-                            findNavController().navigate(
-                                R.id.action_register_to_navigation_home,
-                                bundle
-                            )
-
-
-                }
-            }else{
-                Toast.makeText(requireContext(), "Email Existed", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }*/
-
             }
         }
 
-        fun  CheckEmail(email: String): Boolean{
-            //Toast.makeText(requireContext(), "Email Existed", Toast.LENGTH_SHORT).show()
-
-            var NoExist : Boolean = true
-
-
-            /*mUserViewModel.getUserByEmail(email).observe(viewLifecycleOwner, Observer { user ->
-
-                if(user != null) {
-                    if(user.email == email){
-                        Toast.makeText(requireContext(), "Email Found", Toast.LENGTH_SHORT).show()
-                        NoExist = false
-                        return@Observer
-
-                    }
+    private fun registerUser(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(activity, "Registration successful", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        activity,
+                        "Registration failed: ${task.exception?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            })*/
-
-            return NoExist
-        }
-
+            }
+    }
 
     }
 
