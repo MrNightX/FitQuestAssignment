@@ -20,9 +20,6 @@ class PerExerciseFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-
-
-    //private lateinit var mUserViewModel : UserViewModel
     private var _binding : FragmentPerExerciseBinding? = null
     private val binding get() = _binding!!
 
@@ -57,6 +54,8 @@ class PerExerciseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val ONE_MEGABYTE : Long = 1024 * 1024
+        ExerciseName = arguments?.getString("exerciseName").toString()
+        binding.textViewExerciseName.setText(ExerciseName)
 
         binding.buttonTestExercise1.setOnClickListener {
 
