@@ -39,6 +39,11 @@ class PerExerciseFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
+        /*
+
+        DON'T EVER ATTEMPT TO PERFORM SAVE STATE
+
+         */
     }
 
     override fun onCreateView(
@@ -54,8 +59,16 @@ class PerExerciseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val ONE_MEGABYTE : Long = 1024 * 1024
+
         ExerciseName = arguments?.getString("exerciseName").toString()
-        binding.textViewExerciseName.setText(ExerciseName)
+        imagePath = arguments?.getString("imgPath").toString()
+        ExerciseType = arguments?.getString("exerciseType").toString()
+        TargetBody = arguments?.getString("targetBody").toString()
+        CalorieBurned = arguments?.getInt("calorieBurned")!!
+        ExerciseInfo = arguments?.getString("exerciseInfo").toString()
+
+        ChangeImage(imagePath)
+        ChangeData()
 
         binding.buttonTestExercise1.setOnClickListener {
 
@@ -92,12 +105,17 @@ class PerExerciseFragment : Fragment() {
         }
 
         binding.buttonBackExercise.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
         //Refer to VerificationFirst and VerificationSecond
 
-
     }
+
+    /*
+
+        DON'T EVER ATTEMPT TO PERFORM SAVE STATE
+
+    */
 
     fun ChangeData()
     {
