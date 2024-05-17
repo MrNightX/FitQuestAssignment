@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_navigation_addRoutine_to_workout_ChooseMode"
             app:destination="@id/workout_ChooseMode" />
+        <action
+            android:id="@+id/action_navigation_addRoutine_to_consoleAddExercisePage"
+            app:destination="@id/consoleAddExercisePage" />
     </fragment>
     <fragment
         android:id="@+id/profilePage"
@@ -130,5 +133,10 @@
         android:name="com.example.fitquest.PerExerciseFragment"
         android:label="fragment_per_exercise"
         tools:layout="@layout/fragment_per_exercise" />
+    <fragment
+        android:id="@+id/consoleAddExercisePage"
+        android:name="com.example.fitquest.ConsoleAddExercisePage"
+        android:label="fragment_console_add_exercise_page"
+        tools:layout="@layout/fragment_console_add_exercise_page" />
 
 </navigation>

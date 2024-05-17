@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentWorkoutChooseModeBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class Workout_ChooseMode : Fragment() {
@@ -25,6 +27,8 @@ class Workout_ChooseMode : Fragment() {
 
     private var imagePath: String = ""
 
+    //Testing Database
+    private lateinit var firebaseRef : DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,6 +46,17 @@ class Workout_ChooseMode : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bundle = Bundle()
+
+        /*
+        firebaseRef = FirebaseDatabase.getInstance().getReference("Exercise/Test")
+
+        firebaseRef.setValue("This worked")
+            .addOnCompleteListener {
+                Toast.makeText(requireContext(), "This worked", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(requireContext(), "This failed", Toast.LENGTH_SHORT).show()
+            }
+        */
 
         binding.buttonRecommend.setOnClickListener{
             Toast.makeText(requireContext(), "Not implemented yet", Toast.LENGTH_SHORT).show()
@@ -78,8 +93,37 @@ class Workout_ChooseMode : Fragment() {
             println("Injected Squat")
             Toast.makeText(requireContext(), "Injected Squat", Toast.LENGTH_SHORT).show()
 
+            //Inject data by class
+            val exercise:Exercise = Exercise(1,
+                "Push Up",
+                "ExercisePicture/better_pushups.png" ,
+                "Strength",
+                "Push-up exercise is a close chain kinetic exercise which improves the " +
+                        "joint proprioception, joint stability and muscle co-activation around the " +
+                        "shoulder joint.",
+                "Chest",
+                0,
+                0.0f,
+                10,
+                3,
+                10,
+                100)
 
+            bundle.putString("exerciseName", exercise.exerciseName)
+            bundle.putString("imgPath", exercise.exerciseImgPath)
+            bundle.putString("exerciseType", exercise.exerciseType)
+            bundle.putString("targetBody", exercise.targetBody)
+            bundle.putInt("calorieBurned", exercise.burnedCalorie)
+            bundle.putString("exerciseInfo", exercise.exerciseDesc)
 
+            firebaseRef = FirebaseDatabase.getInstance().getReference("Exercise/PushUp")
+
+            firebaseRef.setValue(exercise)
+                .addOnCompleteListener {
+                    Toast.makeText(requireContext(), "Pushup set", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(requireContext(), "This failed", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 

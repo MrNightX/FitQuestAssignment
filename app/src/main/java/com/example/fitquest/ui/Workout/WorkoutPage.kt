@@ -34,6 +34,10 @@ class WorkoutPage : Fragment() {
         binding.buttonToChoose.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_addRoutine_to_workout_ChooseMode)
         }
+
+        binding.buttonToAddPage.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_addRoutine_to_consoleAddExercisePage)
+        }
     }
 
 }
