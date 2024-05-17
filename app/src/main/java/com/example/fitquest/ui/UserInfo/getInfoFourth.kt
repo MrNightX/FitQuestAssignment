@@ -75,8 +75,7 @@ class getInfoFourth : Fragment() {
         }
 
         binding.imageButtonBack4.setOnClickListener {
-            val intent = Intent(requireContext(), getInfoThird::class.java)
-            startActivity(intent)
+            requireFragmentManager().popBackStack()
         }
     }
 

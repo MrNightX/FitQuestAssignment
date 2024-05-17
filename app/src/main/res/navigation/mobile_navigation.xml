@@ -63,6 +63,16 @@
         android:name="com.example.fitquest.PerExerciseFragment"
         android:label="fragment_per_exercise"
         tools:layout="@layout/fragment_per_exercise" />
+    <fragment
+        android:id="@+id/goalPage"
+        android:name="com.example.fitquest.ui.UserInfo.goalPage"
+        android:label="fragment_goal_page"
+        tools:layout="@layout/fragment_goal_page" />
+    <fragment
+        android:id="@+id/myBodyPage"
+        android:name="com.example.fitquest.ui.UserInfo.myBodyPage"
+        android:label="fragment_my_body_page"
+        tools:layout="@layout/fragment_my_body_page" />
 
 
 </navigation>

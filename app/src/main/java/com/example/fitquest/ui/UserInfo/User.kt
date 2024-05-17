@@ -5,16 +5,17 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "user_table")
 data class User(
-    val username: String,
-    val gender: Int,
-    val age: Int,
-    val contactNum: String,
-    val height: Float,
-    val weight: Float,
-    val questionWOGoal: Int, // 0 - 4
-    val questionWOLvl: Int, // 0 - 2
+    var username: String,
+    var gender: Int,
+    var age: Int,
+    var contactNum: String,
+    var height: Float,
+    var weight: Float,
+    var questionWOGoal: Int, // 0 - 4
+    var questionWOLvl: Int, // 0 - 2
     @PrimaryKey
-    val email: String,
-    val password: String
+    var email: String,
+    var password: String,
+    var uid: String
 
 )

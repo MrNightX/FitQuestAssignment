@@ -80,17 +80,4 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="205dp" />
 
-    <ImageButton
-        android:id="@+id/imageButtonBack"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="#00FFFFFF"
-        android:contentDescription="@string/back"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

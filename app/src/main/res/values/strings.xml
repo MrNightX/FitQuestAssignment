@@ -88,4 +88,16 @@
     <string name="next">Next</string>
     <string name="back">Return to previous page</string>
     <string name="complete">Congratulations, you are all set!</string>
+
+    //Goals Page
+    <string name="current_goal">Your New Workout Goal Is:</string>
+    <string name="change_goal">Change</string>
+
+
+    //Body Page
+    <string name="previous_info">Your Previous Body Information Is:</string>
+    <string name="previous_weight">Your Previous Weight Is:</string>
+    <string name="previous_height">Your Previous Height Is:</string>
+    <string name="enter_current_weight">Enter Your Current Weight:</string>
+    <string name="enter_current_height">Enter Your Current Height:</string>
 </resources>

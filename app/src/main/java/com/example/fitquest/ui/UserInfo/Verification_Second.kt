@@ -73,7 +73,7 @@ class Verification_Second : Fragment() {
 
 
         binding.imageButtonBack2.setOnClickListener {
-
+            requireFragmentManager().popBackStack()
         }
     }
 

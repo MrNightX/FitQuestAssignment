@@ -60,14 +60,9 @@ class Register : Fragment() {
         database = FirebaseDatabase.getInstance().reference
         auth = FirebaseAuth.getInstance()
 
-        val userAge = arguments?.getInt("userAge")
-        val userGender = arguments?.getInt("userGender")
-        val userWeight = arguments?.getFloat("userWeight")
-        val userHeight = arguments?.getFloat("userHeight")
-        val userGoal = arguments?.getInt("userGoal")
-        val userLvl = arguments?.getInt("userLvl")
+
         binding.buttonRegister.setOnClickListener {
-            val userId = database.push().key
+
             username = binding.editTextRegisterUserFullName.text.toString()
             phoneNum = binding.editTextRegisterPhone.text.toString()
             email = binding.editTextRegisterEmail.text.toString()
@@ -84,36 +79,20 @@ class Register : Fragment() {
                 return@setOnClickListener
             }
 
-            val user:User = User(username,userGender!!,userAge!!,phoneNum, userHeight!!,userWeight!!,userGoal!!,userLvl!!,email,password)
-            val usersRef = database.child("users")
 
-            usersRef.orderByChild("email").equalTo(user.email)
+            val usersRef = database.child("users")
+            usersRef.orderByChild("email").equalTo(email)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            // Email already exists, show error message or handle accordingly
-                            // For example, you can display a Toast message
                             Toast.makeText(requireContext(), "Email already exists", Toast.LENGTH_SHORT).show()
                         } else {
-                            // Email doesn't exist, proceed to save the user
-                            registerUser(user.email, user.password)
-
-                            usersRef.child(userId!!).setValue(user)
-                                .addOnSuccessListener {
-
-                                    Toast.makeText(requireContext(),"Created",Toast.LENGTH_SHORT).show()
-                                    val intent = Intent(requireContext(),LoginActivity::class.java)
-                                    startActivity(intent)
-                                }
-                                .addOnFailureListener {
-                                    Toast.makeText(requireContext(),"Fail",Toast.LENGTH_SHORT).show()
-                                }
+                            registerUser(email, password)
                         }
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
-                        // Handle errors
-                        Toast.makeText(requireContext(),"Canceled",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Canceled", Toast.LENGTH_SHORT).show()
                     }
                 })
 
@@ -126,11 +105,15 @@ class Register : Fragment() {
 
     }
 
+
     private fun registerUser(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(activity, "Registration successful", Toast.LENGTH_SHORT).show()
+                    val user = auth.currentUser
+                    if (user != null) {
+                        saveUserToDatabase(user.uid)
+                    }
                 } else {
                     Toast.makeText(
                         activity,
@@ -140,6 +123,29 @@ class Register : Fragment() {
                 }
             }
     }
+
+    private fun saveUserToDatabase(uid: String) {
+        val userAge = arguments?.getInt("userAge")
+        val userGender = arguments?.getInt("userGender")
+        val userWeight = arguments?.getFloat("userWeight")
+        val userHeight = arguments?.getFloat("userHeight")
+        val userGoal = arguments?.getInt("userGoal")
+        val userLvl = arguments?.getInt("userLvl")
+
+        val user:User = User(username,userGender!!,userAge!!,phoneNum, userHeight!!,userWeight!!,userGoal!!,userLvl!!,email,password,uid)
+
+        val usersRef = database.child("users")
+        usersRef.child(uid).setValue(user)
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "User is Created", Toast.LENGTH_SHORT).show()
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                startActivity(intent)
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "User Fail to create", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 
 }
 

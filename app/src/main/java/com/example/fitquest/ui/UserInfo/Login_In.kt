@@ -28,7 +28,7 @@ class Login_In : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        email = arguments?.getString("username").toString()
+
     }
 
     override fun onCreateView(

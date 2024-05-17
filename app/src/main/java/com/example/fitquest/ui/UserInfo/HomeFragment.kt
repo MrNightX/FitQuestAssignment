@@ -85,6 +85,7 @@ class HomeFragment : Fragment() {
                             binding.textViewBMIStatus.text = getString(R.string.BMI_OverStatus)
 
                         binding.textViewBMIValue.text = String.format("%.2f",bmi)
+
                     }
                 }
 
