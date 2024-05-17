@@ -88,4 +88,11 @@
     <string name="next">Next</string>
     <string name="back">Return to previous page</string>
     <string name="complete">Congratulations, you are all set!</string>
+
+    <string name="title_preset">Choose Your Preset Routine</string>
+    <string name="routine_1">Arms</string>
+    <string name="routine_2">Chest</string>
+    <string name="routine_3">Abdominal</string>
+    <string name="routine_4">Legs</string>
+    <string name="routine_5">Full Body</string>
 </resources>
