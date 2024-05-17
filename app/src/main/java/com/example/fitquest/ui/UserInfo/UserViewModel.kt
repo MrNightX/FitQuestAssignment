@@ -3,11 +3,14 @@ package com.example.fitquest.ui.UserInfo
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 class UserViewModel (application: Application): AndroidViewModel(application){
     val readAllData: LiveData<List<User>>
     private val userRepository: UserRepository
+    private val _email = MutableLiveData<String>()
+    val email: LiveData<String> get() = _email
 
     init{
         val userDAO = FitDatabase.getDatabase(application).UserDAO()
@@ -15,6 +18,10 @@ class UserViewModel (application: Application): AndroidViewModel(application){
         readAllData = userRepository.readAllData
 
 
+    }
+
+    fun setEmail(email: String) {
+        _email.value = email
     }
 
     fun AddUser(user: User) = viewModelScope.launch {

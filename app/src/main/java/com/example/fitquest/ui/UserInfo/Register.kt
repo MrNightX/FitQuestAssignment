@@ -2,6 +2,8 @@ package com.example.fitquest.ui.UserInfo
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentRegisterBinding
+import com.example.fitquest.ui.Workout.Exercise
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -76,9 +79,13 @@ class Register : Fragment() {
 
             }
 
+            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                Log.d("Email Fail","Email Wrong")
+                return@setOnClickListener
+            }
+
             val user:User = User(username,userGender!!,userAge!!,phoneNum, userHeight!!,userWeight!!,userGoal!!,userLvl!!,email,password)
             val usersRef = database.child("users")
-
 
             usersRef.orderByChild("email").equalTo(user.email)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -90,6 +97,7 @@ class Register : Fragment() {
                         } else {
                             // Email doesn't exist, proceed to save the user
                             registerUser(user.email, user.password)
+
                             usersRef.child(userId!!).setValue(user)
                                 .addOnSuccessListener {
 

@@ -37,11 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            //reload()
-        }
+
 
         binding.buttonLogin.setOnClickListener {
             email = binding.editTextEmail.text.toString()
@@ -80,7 +76,6 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT,
                     ).show()
                     val intent = Intent(this@LoginActivity,MainActivity::class.java)
-                    intent.putExtra("email",email)
                     startActivity(intent)
                     finish()
                 } else {

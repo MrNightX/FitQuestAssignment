@@ -1,19 +1,22 @@
-package com.example.fitquest.ui.home
+package com.example.fitquest.ui.UserInfo
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 
-import androidx.navigation.fragment.findNavController
+
+import com.example.fitquest.MainActivity
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentHomeBinding
-import com.example.fitquest.ui.UserInfo.UserViewModel
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -23,9 +26,9 @@ import com.google.firebase.database.ValueEventListener
 import kotlin.math.pow
 
 class HomeFragment : Fragment() {
-    private lateinit var mUserViewModel: UserViewModel
+    private lateinit var auth: FirebaseAuth
     private var _binding: FragmentHomeBinding? = null
-
+    public var  bundle: Bundle? = null
     //private var email : String = ""
     private var bmi : Float = 0.0f
     private var heightInM : Float = 0.0f
@@ -44,14 +47,20 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val email = arguments?.getString("email")
+
+        bundle = (requireActivity() as MainActivity).bundle
+
+        val email = bundle?.getString("email")
+
         database = FirebaseDatabase.getInstance().reference
+
         val usersRef = database.child("users")
 
         usersRef.orderByChild("email").equalTo(email)
@@ -88,8 +97,10 @@ class HomeFragment : Fragment() {
 
 
         binding.testButtonGetInfo.setOnClickListener {
-            val navController = findNavController()
-            navController.navigate(R.id.login_In)
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(requireContext(),LoginActivity::class.java)
+            startActivity(intent)
+
         }
 
 
