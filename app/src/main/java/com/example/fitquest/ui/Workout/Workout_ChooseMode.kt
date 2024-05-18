@@ -9,8 +9,14 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentWorkoutChooseModeBinding
+import com.google.firebase.Firebase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
+import com.google.firebase.database.getValue
 
 
 class Workout_ChooseMode : Fragment() {
@@ -28,7 +34,7 @@ class Workout_ChooseMode : Fragment() {
     private var imagePath: String = ""
 
     //Testing Database
-    private lateinit var firebaseRef : DatabaseReference
+    private lateinit var firebaseRef : DatabaseReference //Reference to the database
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,17 +52,6 @@ class Workout_ChooseMode : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bundle = Bundle()
-
-        /*
-        firebaseRef = FirebaseDatabase.getInstance().getReference("Exercise/Test")
-
-        firebaseRef.setValue("This worked")
-            .addOnCompleteListener {
-                Toast.makeText(requireContext(), "This worked", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(requireContext(), "This failed", Toast.LENGTH_SHORT).show()
-            }
-        */
 
         binding.buttonRecommend.setOnClickListener{
             Toast.makeText(requireContext(), "Not implemented yet", Toast.LENGTH_SHORT).show()
@@ -90,7 +85,7 @@ class Workout_ChooseMode : Fragment() {
         }
 
         binding.buttonCWorkoutInject2.setOnClickListener {
-            println("Injected Squat")
+
             Toast.makeText(requireContext(), "Injected Squat", Toast.LENGTH_SHORT).show()
 
             //Inject data by class
@@ -125,6 +120,45 @@ class Workout_ChooseMode : Fragment() {
                     Toast.makeText(requireContext(), "This failed", Toast.LENGTH_SHORT).show()
                 }
         }
+        binding.buttonLoadAndCheck.setOnClickListener {
+
+            val exerciseName : String = "Push Up"
+
+            fetchExerciseData(exerciseName)
+            //Then go to the Per Exercise Fragment
+            //findNavController().navigate(R.id.action_workout_ChooseMode_to_perExerciseFragment, bundle)
+        }
+    }
+
+    private fun fetchExerciseData(inputName:String)
+    {
+        println("Reached Here")
+        firebaseRef = FirebaseDatabase.getInstance().reference
+        val exerciseRef = firebaseRef.child("Exercise").child(inputName)
+        exerciseRef.get().addOnSuccessListener {
+            Toast.makeText(requireContext(), "Can fetch data",Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener {
+            Toast.makeText(requireContext(), "Can't fetch data",Toast.LENGTH_SHORT).show()
+        }
+
+        exerciseRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val exercise: Exercise = snapshot.getValue(Exercise ::class.java)!!
+                if(exercise != null)
+                {
+                    Toast.makeText(requireContext(), "Can fetch data using snapshot",Toast.LENGTH_SHORT).show()
+                }
+                else
+                {
+                    Toast.makeText(requireContext(), "Can't fetch data using snapshot",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Error with fetching data using snapshot",Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
 

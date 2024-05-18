@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "exercise_table")
 data class Exercise(
-    @PrimaryKey(autoGenerate = true)
+    //@PrimaryKey(autoGenerate = true)
 
-    val exerciseId: Int,
+    @PrimaryKey val exerciseId: Int,
     val exerciseName: String,
     val exerciseImgPath : String,
     val exerciseType : String,

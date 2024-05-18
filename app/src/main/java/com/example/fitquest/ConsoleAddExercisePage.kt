@@ -11,6 +11,7 @@ import com.example.fitquest.ui.Workout.Exercise
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -54,33 +55,38 @@ class ConsoleAddExercisePage : Fragment() {
 
         binding.buttonAddData.setOnClickListener {
 
-            filepath = "Exercise/"
-            filepath += binding.editTextExerciseName.text.toString()
+            //filepath = "Exercise/"
+            //filepath += binding.editTextExerciseName.text.toString()
             Toast.makeText(requireContext(), filepath, Toast.LENGTH_SHORT).show()
 
             val exercise:Exercise = Exercise(
-                binding.editTextExerciseID.text.toString().toInt(),
-                binding.editTextExerciseName.text.toString(),
-                binding.editTextImgPath.text.toString(),
-                binding.editTextExerciseType.text.toString(),
-                binding.editTextExerciseDesc.text.toString(),
-                binding.editTextTargetBody.text.toString(),
-                0,
-                2.0f,
-                10,
-                3,
-                10,
-                100
+                exerciseId = binding.editTextExerciseID.text.toString().toInt(),
+                exerciseName =  binding.editTextExerciseName.text.toString(),
+                exerciseImgPath =  binding.editTextImgPath.text.toString(),
+                exerciseType =  binding.editTextExerciseType.text.toString(),
+                exerciseDesc =  binding.editTextExerciseDesc.text.toString(),
+                targetBody =  binding.editTextTargetBody.text.toString(),
+                timeSec =  0,
+                weight =  2.0f,
+                numOfReps =  10,
+                numOfSets = 3,
+                restBetweenSets =  10,
+                burnedCalorie =  100
             )
 
-            firebaseRef = FirebaseDatabase.getInstance().getReference(filepath)
+            /*firebaseRef = FirebaseDatabase.getInstance().getReference(filepath)
 
             firebaseRef.setValue(exercise)
                 .addOnCompleteListener {
                     Toast.makeText(requireContext(), binding.editTextExerciseName.text.toString() + " Is Set", Toast.LENGTH_SHORT).show()
                 }.addOnFailureListener {
                     Toast.makeText(requireContext(), "This failed", Toast.LENGTH_SHORT).show()
-                }
+                }*/
+
+            val database = FirebaseDatabase.getInstance()
+            val exerciseRef = database.getReference("Exercises")
+
+
         }
     }
 
