@@ -82,8 +82,4 @@ class myBodyPage : Fragment() {
 
     }
 
-    private fun UpdateBody(email: String){
-
-    }
-
 }

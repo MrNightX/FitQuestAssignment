@@ -12,14 +12,6 @@ import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentVerificationFIrstBinding
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Verification_FIrst.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Verification_FIrst : Fragment() {
 
     companion object {
@@ -36,8 +28,6 @@ class Verification_FIrst : Fragment() {
 
 
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,11 +67,6 @@ class Verification_FIrst : Fragment() {
             }
         }
 
-        //TODO: This is for linking Terence's page with the back button to return to registration page
-        /*binding.imageButtonBack.setOnClickListener {
-            val intent = Intent(this, SecondStep::class.java)
-            startActivity(intent)
-        }*/
     }
 
     private fun saveUserGender(gender: Int) {

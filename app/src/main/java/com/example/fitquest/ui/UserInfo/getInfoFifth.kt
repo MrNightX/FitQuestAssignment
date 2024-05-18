@@ -11,18 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentGetInfoFifthBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [getInfoFifth.newInstance] factory method to
- * create an instance of this fragment.
- */
 class getInfoFifth : Fragment() {
-    // TODO: Rename and change types of parameters
+
 
 
     private var _binding: FragmentGetInfoFifthBinding? = null
@@ -48,7 +39,7 @@ class getInfoFifth : Fragment() {
         val userGender = arguments?.getInt("userGender")
         val userWeight = arguments?.getFloat("userWeight")
         val userHeight = arguments?.getFloat("userHeight")
-        Toast.makeText(context, "Selected gender: $userAge $userGender $userWeight $userHeight", Toast.LENGTH_SHORT).show()
+
         /*
         *        "Weight Loss" - 0
                  "Muscle Gain" - 1

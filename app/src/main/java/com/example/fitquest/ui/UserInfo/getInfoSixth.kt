@@ -11,18 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentGetInfoSixthBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [getInfoSixth.newInstance] factory method to
- * create an instance of this fragment.
- */
 class getInfoSixth : Fragment() {
-    // TODO: Rename and change types of parameters
+
 
     private var selectedLvl : Int = -1
     private var _binding: FragmentGetInfoSixthBinding? = null
@@ -63,32 +53,11 @@ class getInfoSixth : Fragment() {
                     return@setOnClickListener
                 }
             }
-            /*
-            *       "Beginner" - 0
-                    "Intermediate" - 1
-                    "Advanced" - 2
-                    *    val bundle = Bundle()
-                if (userAge != null) {
-                    bundle.putInt("userAge", userAge)
-                }
-                if (userWeight != null) {
-                    bundle.putFloat("userWeight", userWeight)
-                }
-                if (userGender != null) {
-                    bundle.putInt("userGender", userGender)
-                }
-                if (userHeight != null) {
-                    bundle.putFloat("userHeight" , userHeight)
-                }
-                if (userGoal != null) {
-                    bundle.putInt("userGoal", userGoal)
-                }
 
-                bundle.putInt("userLevel", level)*/
             if (selectedLvl != -1) {
                 val bundle = Bundle()
                 Toast.makeText(context, "Selected gender: $userAge $userGender $userWeight $userHeight $userGoal $selectedLvl", Toast.LENGTH_SHORT).show()
-                // If a gender is selected, create an Intent to move to the SecondStep activity
+
                 if (userAge != null && userGender != null && userHeight != null && userWeight != null && userGoal != null) {
 
                         bundle.putInt("userAge", userAge)
@@ -100,7 +69,7 @@ class getInfoSixth : Fragment() {
                 }
                 findNavController().navigate(R.id.registerFragment,bundle)
 
-                //TODO: Bryan just change this intent to the homepage so after user clicks the button it will move to ur page
+
 
             }
             // Handle case if no level is selected
@@ -115,23 +84,5 @@ class getInfoSixth : Fragment() {
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment getInfoSixth.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            getInfoSixth().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

@@ -1,10 +1,12 @@
 package com.example.fitquest.ui.UserInfo
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -22,13 +24,14 @@ import com.google.firebase.storage.storage
 
 
 class ProfilePage : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private lateinit var mUserViewModel: UserViewModel
     private var _binding: FragmentProfilePageBinding? = null
     private lateinit var database: DatabaseReference
     lateinit var storage: FirebaseStorage
     private val binding get() = _binding!!
     public var  bundle: Bundle? = null
+    private var uri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +72,18 @@ class ProfilePage : Fragment() {
             })
         binding.buttonMyBody.setOnClickListener {
             findNavController().navigate(R.id.myBodyPage)
+        }
+
+        val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()){
+            binding.imageViewUserImage.setImageURI(it)
+                if(it!=null){
+                    uri = it
+                }
+
+        }
+
+        binding.imageViewUserImage.setOnClickListener {
+            pickImage.launch("Image/*")
         }
 
 

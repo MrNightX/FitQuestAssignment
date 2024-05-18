@@ -112,10 +112,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/enter_current_weight"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextNumberCurrentWeight"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextNumberCurrentWeight" />
+        tools:layout_editor_absoluteY="306dp" />
 
 
     <TextView
@@ -133,24 +132,24 @@
 
     <EditText
         android:id="@+id/editTextNumberCurrentWeight"
-        android:layout_width="217dp"
-        android:layout_height="44dp"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_corner"
         android:ems="10"
         android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView20"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/rounded_corner"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPreviousHeight" />
+        app:layout_constraintTop_toTopOf="@+id/textView20" />
 
 
     <EditText
         android:id="@+id/editTextNumberCurrentHeight"
-        android:layout_width="216dp"
-        android:layout_height="44dp"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_corner"
