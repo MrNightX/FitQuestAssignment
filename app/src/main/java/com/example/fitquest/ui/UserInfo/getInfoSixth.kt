@@ -49,12 +49,11 @@ class getInfoSixth : Fragment() {
                 binding.radioButtonLevel2.id -> 1
                 binding.radioButtonLevel3.id -> 2
                 else -> {
-                    Toast.makeText(requireContext(), "Please select a goal", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Please select a proficiency level", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
             }
 
-            if (selectedLvl != -1) {
                 val bundle = Bundle()
                 Toast.makeText(context, "Selected gender: $userAge $userGender $userWeight $userHeight $userGoal $selectedLvl", Toast.LENGTH_SHORT).show()
 
@@ -71,11 +70,7 @@ class getInfoSixth : Fragment() {
 
 
 
-            }
-            // Handle case if no level is selected
-            else {
-                Toast.makeText(requireContext(), "Please select a proficiency level", Toast.LENGTH_SHORT).show()
-            }
+
 
 
         }

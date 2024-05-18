@@ -14,7 +14,7 @@
     <string name="ProfileImageDesc">This is your profile image</string>
     <string name="goals">Goals</string>
     <string name="my_body">My Body</string>
-    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
 
     //Terence
     <string name="register_hello1">Hey There,</string>
@@ -90,8 +90,9 @@
     <string name="complete">Congratulations, you are all set!</string>
 
     //Goals Page
-    <string name="current_goal">Your New Workout Goal Is:</string>
+    <string name="new_goal">Your New Workout Goal:</string>
     <string name="change_goal">Change</string>
+    <string name="current_goal">Your current workout goal:</string>
 
 
     //Body Page

@@ -98,9 +98,7 @@ class HomeFragment : Fragment() {
 
 
         binding.testButtonGetInfo.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            val intent = Intent(requireContext(),LoginActivity::class.java)
-            startActivity(intent)
+
 
         }
 

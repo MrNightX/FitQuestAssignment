@@ -66,7 +66,7 @@ class myBodyPage : Fragment() {
                             }
                             userSnapshot.ref.child("height").setValue(newHeight.toFloat())
                             userSnapshot.ref.child("weight").setValue(newWeight.toFloat())
-                            findNavController().navigate(R.id.profilePage)
+                            requireFragmentManager().popBackStack()
                         }
                     }
                 }

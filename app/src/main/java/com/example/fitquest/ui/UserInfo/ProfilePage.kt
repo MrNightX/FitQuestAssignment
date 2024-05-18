@@ -1,5 +1,6 @@
 package com.example.fitquest.ui.UserInfo
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.example.fitquest.MainActivity
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentProfilePageBinding
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -25,7 +27,7 @@ import com.google.firebase.storage.storage
 
 class ProfilePage : Fragment() {
 
-    private lateinit var mUserViewModel: UserViewModel
+
     private var _binding: FragmentProfilePageBinding? = null
     private lateinit var database: DatabaseReference
     lateinit var storage: FirebaseStorage
@@ -70,8 +72,18 @@ class ProfilePage : Fragment() {
                 }
 
             })
+
+        binding.buttonGoal.setOnClickListener {
+            findNavController().navigate(R.id.goalPage)
+        }
         binding.buttonMyBody.setOnClickListener {
             findNavController().navigate(R.id.myBodyPage)
+        }
+
+        binding.buttonSettings.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(requireContext(),LoginActivity::class.java)
+            startActivity(intent)
         }
 
         val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()){
