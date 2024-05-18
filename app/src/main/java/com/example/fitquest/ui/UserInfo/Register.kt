@@ -110,7 +110,7 @@ class Register : Fragment() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val user = auth.currentUser
+                    val user = auth.currentUser //to get current user uid
                     if (user != null) {
                         saveUserToDatabase(user.uid)
                     }
