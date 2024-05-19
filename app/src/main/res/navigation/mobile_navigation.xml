@@ -67,7 +67,6 @@
         android:name="com.example.fitquest.ui.Workout.Workout_ChooseMode"
         android:label="fragment_workout__choose_mode"
         tools:layout="@layout/fragment_workout__choose_mode" />
-        tools:layout="@layout/fragment_workout__choose_mode">
         <action
             android:id="@+id/action_workout_ChooseMode_to_perExerciseFragment"
             app:destination="@id/perExerciseFragment" />
@@ -77,7 +76,7 @@
         <action
             android:id="@+id/action_workout_ChooseMode_to_fragmentList"
             app:destination="@id/exerciseListFragment" />
-    </fragment>
+
 
     <fragment
         android:id="@+id/getInfoFirst"
