@@ -33,13 +33,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-
         //binding.testButtonGetInfo
     }
-
+    /*
     override fun onSupportNavigateUp(): Boolean {
         val NavController = findNavController(R.id.nav_host_fragment_activity_main)
 
         return NavController.navigateUp() || super.onSupportNavigateUp()
     }
+    */
 }

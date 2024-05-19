@@ -6,14 +6,16 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "exercise_table")
 data class Exercise(
     @PrimaryKey(autoGenerate = true)
-    val exerciseId: Int,
-    val exerciseName: String,
-    val exerciseDesc: String,
-    val targetBody: String,
-    val timeSec: Int,
-    val weight: Float,
-    val numOfReps: Int,
-    val numOfSets: Int,
-    val restBetweenSets: Int,
-    val burnedCalorie: Int,
+    val exerciseId: Int         = 0,
+    val exerciseName: String    = "",
+    val exerciseImgPath : String= "",
+    val exerciseType : String   = "",
+    val exerciseDesc: String    = "",
+    val targetBody: String      = "",
+    val timeSec: Int            = 0,
+    val weight: Float           = 0f,
+    val numOfReps: Int          = 0,
+    val numOfSets: Int          = 0,
+    val restBetweenSets: Int    = 0,
+    val burnedCalorie: Int      = 0,
 )
