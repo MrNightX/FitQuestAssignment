@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/purplegradientbackground"
     tools:context=".ui.UserInfo.myBodyPage">
 
     <TextView
@@ -39,6 +40,7 @@
         android:insetBottom="0dp"
         android:textAlignment="center"
         android:translationX="10dp"
+        android:visibility="invisible"
         app:cornerRadius="100dp"
         app:icon="@drawable/outline_arrow_back_ios_new_24"
         app:iconPadding="8dp"
@@ -145,6 +147,7 @@
         android:fontFamily="@font/alata"
         android:hint="weight"
         android:inputType="numberDecimal"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView20"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/textView20" />
@@ -159,6 +162,7 @@
         android:fontFamily="@font/alata"
         android:hint="height"
         android:inputType="numberDecimal"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/textView21"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/textView21" />

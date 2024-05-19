@@ -65,7 +65,7 @@
     <fragment
         android:id="@+id/workout_ChooseMode"
         android:name="com.example.fitquest.ui.Workout.Workout_ChooseMode"
-        android:label="fragment_workout__choose_mode"
+        android:label="Choose Workout Mode"
         tools:layout="@layout/fragment_workout__choose_mode" />
         <action
             android:id="@+id/action_workout_ChooseMode_to_perExerciseFragment"
@@ -151,12 +151,12 @@
     <fragment
         android:id="@+id/goalPage"
         android:name="com.example.fitquest.ui.UserInfo.goalPage"
-        android:label="fragment_goal_page"
+        android:label="Change Goal Page"
         tools:layout="@layout/fragment_goal_page" />
     <fragment
         android:id="@+id/myBodyPage"
         android:name="com.example.fitquest.ui.UserInfo.myBodyPage"
-        android:label="fragment_my_body_page"
+        android:label="Change Body Info"
         tools:layout="@layout/fragment_my_body_page" />
 
     <fragment
