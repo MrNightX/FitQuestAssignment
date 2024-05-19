@@ -28,7 +28,7 @@ class Login_In : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        email = arguments?.getString("username").toString()
+
     }
 
     override fun onCreateView(
@@ -44,7 +44,7 @@ class Login_In : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonLogin.setOnClickListener {
+        binding.buttonRegister.setOnClickListener {
 
             email = binding.editTextEmail.text.toString()
             password = binding.editTextPassword.text.toString()

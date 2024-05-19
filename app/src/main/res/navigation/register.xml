@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register"
+    app:startDestination="@id/verification_First">
+
+    <fragment
+        android:id="@+id/verification_First"
+        android:name="com.example.fitquest.ui.UserInfo.Verification_FIrst"
+        android:label="Verification First"
+        tools:layout="@layout/fragment_verification__f_irst" >
+        <action
+            android:id="@+id/action_verification_First_to_verification_Second"
+            app:destination="@id/verification_Second" />
+    </fragment>
+    <fragment
+        android:id="@+id/verification_Second"
+        android:name="com.example.fitquest.ui.UserInfo.Verification_Second"
+        android:label="fragment_verification__second"
+        tools:layout="@layout/fragment_verification__second" />
+    <fragment
+        android:id="@+id/getInfoThird"
+        android:name="com.example.fitquest.ui.UserInfo.getInfoThird"
+        android:label="fragment_get_info_third"
+        tools:layout="@layout/fragment_get_info_third" />
+    <fragment
+        android:id="@+id/getInfoFourth"
+        android:name="com.example.fitquest.ui.UserInfo.getInfoFourth"
+        android:label="fragment_get_info_fourth"
+        tools:layout="@layout/fragment_get_info_fourth" />
+    <fragment
+        android:id="@+id/getInfoFifth"
+        android:name="com.example.fitquest.ui.UserInfo.getInfoFifth"
+        android:label="fragment_get_info_fifth"
+        tools:layout="@layout/fragment_get_info_fifth" />
+    <fragment
+        android:id="@+id/getInfoSixth"
+        android:name="com.example.fitquest.ui.UserInfo.getInfoSixth"
+        android:label="fragment_get_info_sixth"
+        tools:layout="@layout/fragment_get_info_sixth" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.fitquest.ui.UserInfo.Register"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+
+    <!-- Add other fragments and their actions here -->
+
+</navigation>

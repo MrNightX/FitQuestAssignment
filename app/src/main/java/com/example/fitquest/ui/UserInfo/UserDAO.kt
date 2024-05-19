@@ -15,7 +15,7 @@ interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun AddUser(user: User)
 
-    @Query("SELECT * FROM user_table ORDER BY userId ASC")
+    @Query("SELECT * FROM user_table ORDER BY email ASC")
     fun ReadAllData(): LiveData<List<User>>
 
     @Query("SELECT * FROM user_table WHERE username = :username")

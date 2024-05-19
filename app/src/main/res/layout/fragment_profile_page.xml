@@ -9,64 +9,18 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <Button
-
-        android:id="@+id/buttonBackExercise"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#FFFFFF"
-        android:backgroundTintMode="src_over"
-        android:contentDescription="@string/back_button"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:textAlignment="center"
-        android:translationX="10dp"
-        app:cornerRadius="100dp"
-        app:icon="@drawable/outline_arrow_back_ios_new_24"
-        app:iconPadding="8dp"
-        app:iconTint="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#000000"
-        app:strokeWidth="1dp"
-        tools:ignore="RedundantDescriptionCheck" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#FFFFFF"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        app:cornerRadius="100dp"
-        app:icon="@drawable/rounded_atr_24"
-        app:iconPadding="10dp"
-        app:iconTint="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.939"
-        app:layout_constraintStart_toEndOf="@+id/buttonBackExercise"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#000000"
-        app:strokeWidth="1dp"
-        tools:text="Option" />
-
     <TextView
-        android:id="@+id/textViewAccount"
+        android:id="@+id/textViewExerciseName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="@string/ProfileTitle"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonBackExercise"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toEndOf="@+id/buttonBackExercise"
-        app:layout_constraintTop_toTopOf="@+id/buttonBackExercise"
-        app:layout_constraintVertical_bias="0.609" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewUserImage"
@@ -74,10 +28,10 @@
         android:layout_height="139dp"
         android:layout_marginTop="40dp"
         android:contentDescription="@string/ProfileImageDesc"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewExerciseName"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAccount"
+        app:layout_constraintStart_toStartOf="@+id/textViewExerciseName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewExerciseName"
         app:srcCompat="@drawable/sesield_raiden_crying"
         tools:src="@tools:sample/avatars" />
 
@@ -116,8 +70,8 @@
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewUserImage"
+        app:layout_constraintStart_toStartOf="@+id/imageViewUserImage"
         app:layout_constraintTop_toBottomOf="@+id/imageViewUserImage" />
 
     <androidx.constraintlayout.widget.Group
@@ -219,9 +173,9 @@
         android:background="#00FFFFFF"
         android:text="Button"
         android:textColor="#00FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
         app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/buttonGoal"
         tools:ignore="DuplicateSpeakableTextCheck,HardcodedText,TextContrastCheck" />
 
@@ -251,7 +205,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:fontFamily="sans-serif"
-        android:text="@string/settings"
+        android:text="@string/logout"
         android:textSize="20sp"
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="@+id/imageView8"
@@ -277,9 +231,9 @@
         android:background="#00FFFFFF"
         android:text="Button"
         android:textColor="#00FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView7"
         app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/buttonMyBody"
         tools:ignore="HardcodedText,TextContrastCheck" />
 

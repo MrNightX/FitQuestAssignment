@@ -12,20 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentVerificationSecondBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Verification_Second.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Verification_Second : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     private var userAge: Int = 0
 
@@ -34,10 +22,7 @@ class Verification_Second : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -52,7 +37,7 @@ class Verification_Second : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val userGender = arguments?.getInt("userGender")
-        Toast.makeText(context, "Selected gender: $userGender", Toast.LENGTH_SHORT).show()
+
 
 
                 binding.buttonNext2.setOnClickListener {
@@ -64,7 +49,7 @@ class Verification_Second : Fragment() {
                             bundle.putInt("userGender", userGender)
                         }
                         // If a gender is selected, create an Intent to move to the SecondStep activity
-                        findNavController().navigate(R.id.action_getInfoSecond_to_getInfoThird, bundle)
+                        findNavController().navigate(R.id.getInfoThird, bundle)
                     }
                     else{
                         Toast.makeText(requireContext(), "Please enter your age", Toast.LENGTH_SHORT).show()
@@ -73,28 +58,9 @@ class Verification_Second : Fragment() {
 
 
         binding.imageButtonBack2.setOnClickListener {
-            val intent = Intent(requireContext(), Verification_FIrst::class.java)
-            startActivity(intent)
+            requireFragmentManager().popBackStack()
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Verification_Second.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Verification_Second().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

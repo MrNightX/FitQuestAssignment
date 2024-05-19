@@ -12,15 +12,11 @@ import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentVerificationFIrstBinding
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Verification_FIrst.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Verification_FIrst : Fragment() {
+
+    companion object {
+        fun newInstance() = Verification_FIrst()
+    }
 
     private var userGender: Int = -1
     private var _binding: FragmentVerificationFIrstBinding? = null
@@ -32,8 +28,6 @@ class Verification_FIrst : Fragment() {
 
 
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,7 +60,7 @@ class Verification_FIrst : Fragment() {
 
                 bundle.putInt("userGender", userGender)
                 // If a gender is selected, create an Intent to move to the SecondStep activity
-               findNavController().navigate(R.id.action_getInfoFirst_to_getInfoSecond, bundle)
+               findNavController().navigate(R.id.verification_Second, bundle)
             } else {
                 // If no gender is selected, display a message to prompt the user to select a gender
                 Toast.makeText(requireContext(), "Please select a gender", Toast.LENGTH_SHORT).show()

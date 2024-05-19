@@ -12,13 +12,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentGetInfoFourthBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
 
 
 class getInfoFourth : Fragment() {
-    // TODO: Rename and change types of parameters
+
 
 
     private var userHeight: Float = 0.0f
@@ -43,7 +40,7 @@ class getInfoFourth : Fragment() {
         val userAge = arguments?.getInt("userAge")
         val userGender = arguments?.getInt("userGender")
         val userWeight = arguments?.getFloat("userWeight")
-        Toast.makeText(context, "Selected gender: $userAge $userGender $userWeight", Toast.LENGTH_SHORT).show()
+
 
 
 
@@ -67,7 +64,7 @@ class getInfoFourth : Fragment() {
                 }
                 bundle.putFloat("userHeight" , userHeight)
                 // If a gender is selected, create an Intent to move to the SecondStep activity
-                findNavController().navigate(R.id.action_getInfoFourth_to_getInfoFifth, bundle)
+                findNavController().navigate(R.id.getInfoFifth, bundle)
             }
             else{
                 Toast.makeText(requireContext(), "Please enter your height", Toast.LENGTH_SHORT).show()
@@ -75,8 +72,7 @@ class getInfoFourth : Fragment() {
         }
 
         binding.imageButtonBack4.setOnClickListener {
-            val intent = Intent(requireContext(), getInfoThird::class.java)
-            startActivity(intent)
+            requireFragmentManager().popBackStack()
         }
     }
 

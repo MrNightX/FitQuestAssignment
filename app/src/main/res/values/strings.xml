@@ -14,7 +14,7 @@
     <string name="ProfileImageDesc">This is your profile image</string>
     <string name="goals">Goals</string>
     <string name="my_body">My Body</string>
-    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
 
     //Terence
     <string name="register_hello1">Hey There,</string>
@@ -69,11 +69,11 @@
     <string name="goal">What is your workout goal?</string>
     <string name="goal_desc">Tell us your aim for your fitness journey </string>
 
-    <string name="goal1">Weight Loss:</string>
-    <string name="goal2">Muscle Gain:</string>
-    <string name="goal3">Flexibility and Mobility:</string>
-    <string name="goal4">Improve Cardiovascular Health:</string>
-    <string name="goal5">Stress Reduction:</string>
+    <string name="goal1">Weight Loss</string>
+    <string name="goal2">Muscle Gain</string>
+    <string name="goal3">Flexibility and Mobility</string>
+    <string name="goal4">Improve Cardiovascular Health</string>
+    <string name="goal5">Stress Reduction</string>
 
     //SixthStep
     <string name="level">What is your workout level?</string>
@@ -95,4 +95,17 @@
     <string name="routine_3">Abdominal</string>
     <string name="routine_4">Legs</string>
     <string name="routine_5">Full Body</string>
+
+    //Goals Page
+    <string name="new_goal">Your New Workout Goal:</string>
+    <string name="change_goal">Change</string>
+    <string name="current_goal">Your current workout goal:</string>
+
+
+    //Body Page
+    <string name="previous_info">Your Previous Body Information</string>
+    <string name="previous_weight">Your Previous Weight</string>
+    <string name="previous_height">Your Previous Height</string>
+    <string name="enter_current_weight">Enter Your Current Weight</string>
+    <string name="enter_current_height">Enter Your Current Height</string>
 </resources>

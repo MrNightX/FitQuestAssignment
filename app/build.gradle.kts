@@ -3,7 +3,9 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
     id("com.google.gms.google-services")
-    //id("com.google.gms.google-services") version "4.4.1" apply false
+    id("androidx.navigation.safeargs.kotlin")
+
+
 }
 
 android {
@@ -57,6 +59,9 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.10.1")
 
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.fragment.ktx)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -72,10 +77,17 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
     testImplementation("androidx.room:room-testing:$room_version")
-
-    // To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:$room_version")
 
     // Dependencies for Coroutine
     implementation("androidx.room:room-ktx:$room_version")
+
+    // Import Firebase Stuff
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-storage")
+
+    //picasso
+    implementation("com.squareup.picasso:picasso:2.8")
+
 }
