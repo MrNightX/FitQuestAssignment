@@ -16,6 +16,7 @@ data class User(
     @PrimaryKey
     var email: String,
     var password: String,
-    var uid: String
+    var uid: String,
+    var photoUri: String
 
 )

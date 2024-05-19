@@ -91,5 +91,9 @@ class goalPage : Fragment() {
                 }
 
             })
+
+        binding.buttonBackBody.setOnClickListener {
+            requireFragmentManager().popBackStack()
+        }
     }
 }

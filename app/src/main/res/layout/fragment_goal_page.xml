@@ -111,6 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
+        android:fontFamily="@font/alata"
         android:text="@string/change_goal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,7 +123,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/alata"
         android:text="@string/current_goal"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/RadioGroupGoal"
         app:layout_constraintStart_toStartOf="@+id/RadioGroupGoal"
         app:layout_constraintTop_toBottomOf="@+id/RadioGroupGoal" />

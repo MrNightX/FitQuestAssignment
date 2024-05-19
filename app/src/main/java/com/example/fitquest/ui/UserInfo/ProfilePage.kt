@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
+import kotlin.text.Regex
 
 
 
@@ -59,8 +60,8 @@ class ProfilePage : Fragment() {
         val email = bundle?.getString("email")
         database = FirebaseDatabase.getInstance().reference
         storageRef = FirebaseStorage.getInstance().reference
-
         val usersRef = database.child("users")
+
 
 
 
@@ -73,14 +74,17 @@ class ProfilePage : Fragment() {
                     for (userSnapshot in snapshot.children) {
                         binding.textViewUserName.text = userSnapshot.child("username").getValue(String::class.java)
                         var uriString = userSnapshot.child("photoUri").getValue(String::class.java)
-                        val uri = Uri.parse(uriString)
-                        Picasso.get().load(uri).into(binding.imageViewUserImage)
+
+                        if(uriString != "0") {
+                            val uri = Uri.parse(uriString)
+                            Picasso.get().load(uri).into(binding.imageViewUserImage)
+                        }
 
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-
+                    Log.e("FirebaseRealtime", "Database Error")
                 }
 
             })

@@ -9,16 +9,6 @@
 
 
     <TextView
-        android:id="@+id/textViewForgetPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="252dp"
-        android:text="@string/forget_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textViewLoginHello1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="128dp"
         android:background="@drawable/rounded_corner"
         android:padding="18dp"
         android:text="@string/login"
@@ -91,36 +81,14 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageViewFacebook"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginBottom="92dp"
-        android:contentDescription="@string/facebook"
-        android:src="@drawable/facebook"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageViewGoogle"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginBottom="92dp"
-        android:contentDescription="@string/google"
-        android:src="@drawable/google"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textViewToRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="32dp"
         android:text="@string/to_register"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

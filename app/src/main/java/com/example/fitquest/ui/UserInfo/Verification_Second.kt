@@ -37,7 +37,7 @@ class Verification_Second : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val userGender = arguments?.getInt("userGender")
-        Toast.makeText(context, "Selected gender: $userGender", Toast.LENGTH_SHORT).show()
+
 
 
                 binding.buttonNext2.setOnClickListener {

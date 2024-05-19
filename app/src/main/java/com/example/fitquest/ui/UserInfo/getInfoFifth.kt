@@ -62,7 +62,7 @@ class getInfoFifth : Fragment() {
             }
 
 
-            Toast.makeText(context, "Selected gender: $selected_goal", Toast.LENGTH_SHORT).show()
+
             if (goal > -1) {
                 val bundle = Bundle()
                 if (userAge != null) {

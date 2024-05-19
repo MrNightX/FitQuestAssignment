@@ -40,7 +40,7 @@ class getInfoSixth : Fragment() {
         val userWeight = arguments?.getFloat("userWeight")
         val userHeight = arguments?.getFloat("userHeight")
         val userGoal = arguments?.getInt("userGoal")
-        Toast.makeText(context, "Selected gender: $userAge $userGender $userWeight $userHeight $userGoal", Toast.LENGTH_SHORT).show()
+
         binding.buttonNext6.setOnClickListener {
             val level = binding.RadioGroupLevel.checkedRadioButtonId
 
@@ -55,7 +55,7 @@ class getInfoSixth : Fragment() {
             }
 
                 val bundle = Bundle()
-                Toast.makeText(context, "Selected gender: $userAge $userGender $userWeight $userHeight $userGoal $selectedLvl", Toast.LENGTH_SHORT).show()
+
 
                 if (userAge != null && userGender != null && userHeight != null && userWeight != null && userGoal != null) {
 

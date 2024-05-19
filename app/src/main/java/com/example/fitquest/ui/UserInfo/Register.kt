@@ -26,9 +26,7 @@ import com.google.firebase.database.ValueEventListener
 
 
 class Register : Fragment() {
-    // TODO: Rename and change types of parameters
 
-    private lateinit var mUserViewModel: UserViewModel
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
@@ -41,7 +39,7 @@ class Register : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        //auth = Firebase.auth
+
 
     }
 
@@ -51,7 +49,7 @@ class Register : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
         return binding.root
     }
 
@@ -59,9 +57,14 @@ class Register : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         database = FirebaseDatabase.getInstance().reference
         auth = FirebaseAuth.getInstance()
+        val passwordPattern = Regex("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$")
+        val malaysiaPattern = Regex("^(\\+?6?01)[0-46-9]-?[0-9]{7,8}$")
+
 
 
         binding.buttonRegister.setOnClickListener {
+
+
 
             username = binding.editTextRegisterUserFullName.text.toString()
             phoneNum = binding.editTextRegisterPhone.text.toString()
@@ -74,8 +77,24 @@ class Register : Fragment() {
 
             }
 
+
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                Toast.makeText(requireContext(), "Invalid email format", Toast.LENGTH_SHORT).show()
                 Log.d("Email Fail","Email Wrong")
+                return@setOnClickListener
+            }
+
+            if(!passwordPattern.matches(password)){
+                Toast.makeText(requireContext(), "Invalid password format", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(!malaysiaPattern.matches(phoneNum)){
+                Toast.makeText(requireContext(), "Invalid phone number format. Please enter a valid Malaysian phone number", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if(!binding.checkBoxTermOfUse.isChecked){
+                Toast.makeText(requireContext(),"Please accept the Privacy Policy and Terms of Use to continue.",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -132,7 +151,7 @@ class Register : Fragment() {
         val userGoal = arguments?.getInt("userGoal")
         val userLvl = arguments?.getInt("userLvl")
 
-        val user:User = User(username,userGender!!,userAge!!,phoneNum, userHeight!!,userWeight!!,userGoal!!,userLvl!!,email,password,uid)
+        val user:User = User(username,userGender!!,userAge!!,phoneNum, userHeight!!,userWeight!!,userGoal!!,userLvl!!,email,password,uid,"0")
 
         val usersRef = database.child("users")
         usersRef.child(uid).setValue(user)
