@@ -3,6 +3,7 @@ package com.example.fitquest.ui.Workout
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+
 @Entity(tableName = "exercise_table")
 data class Exercise(
     @PrimaryKey(autoGenerate = true)
@@ -19,3 +20,4 @@ data class Exercise(
     val restBetweenSets: Int    = 0,
     val burnedCalorie: Int      = 0,
 )
+

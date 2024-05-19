@@ -28,7 +28,9 @@ class SelectedExercisesFragment : Fragment() {
 
         viewModel.selectedExercises.observe(viewLifecycleOwner) { selectedExercises ->
             binding.recyclerView.layoutManager = LinearLayoutManager(context)
-            binding.recyclerView.adapter = ExerciseAdapter(selectedExercises) { }
+            binding.recyclerView.adapter = ExerciseAdapter(selectedExercises) {
+
+            }
         }
     }
 
@@ -36,4 +38,6 @@ class SelectedExercisesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

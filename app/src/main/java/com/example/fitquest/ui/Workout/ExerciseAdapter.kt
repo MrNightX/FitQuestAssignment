@@ -27,7 +27,9 @@ class ExerciseAdapter(
             notifyItemChanged(previousPosition)
             notifyItemChanged(selectedPosition)
             onItemClick(exercises[holder.adapterPosition])
+
         }
+
     }
 
     override fun getItemCount() = exercises.size

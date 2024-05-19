@@ -43,18 +43,17 @@ class ExerciseListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val bundle = Bundle()
         val exercises = generateExerciseList()
-
 
         adapter = ExerciseAdapter(
             //exercises,
             NewList,
             onItemClick = { exercise ->
-                Toast.makeText(context, "Selected: ${exercise.exerciseName}", Toast.LENGTH_SHORT).show()
-                val bundle = Bundle()
-                //fetchExerciseData(exercise.exerciseName, bundle)
-                viewModel.addExercise(exercise) // Add exercise to the shared ViewModel
+                //Toast.makeText(context, "Selected: ${exercise.exerciseName}", Toast.LENGTH_SHORT).show()
+
+                fetchExerciseData(exercise.exerciseName, bundle)
+                //viewModel.addExercise(exercise) // Add exercise to the shared ViewModel
             }
         )
 
@@ -85,15 +84,22 @@ class ExerciseListFragment : Fragment() {
                             val tempExercise = exerciseSnap.getValue(Exercise::class.java)
                             println("can get")
                             if (tempExercise != null) {
-
+                                bundle.putInt("exerciseID", tempExercise.exerciseId)
                                 bundle.putString("exerciseName", tempExercise.exerciseName)
                                 bundle.putString("imgPath", tempExercise.exerciseImgPath)
                                 bundle.putString("exerciseType", tempExercise.exerciseType)
+                                bundle.putString("exerciseDesc", tempExercise.exerciseDesc)
                                 bundle.putString("targetBody", tempExercise.targetBody)
+
+                                bundle.putInt("timeSec", tempExercise.timeSec)
+                                bundle.putFloat("weight", tempExercise.weight)
+                                bundle.putInt("numOfReps", tempExercise.numOfReps)
+                                bundle.putInt("numOfSets", tempExercise.numOfSets)
+                                bundle.putInt("restBetweenSets", tempExercise.restBetweenSets)
+
                                 bundle.putInt("calorieBurned", tempExercise.burnedCalorie)
-                                bundle.putString("exerciseInfo", tempExercise.exerciseDesc)
-                                println("DATA SETTT !!!")
-                                findNavController().navigate(R.id.action_workout_ChooseMode_to_perExerciseFragment, bundle)
+
+                                findNavController().navigate(R.id.action_exerciseListFragment_to_perExerciseFragment, bundle)
                                 //THIS WORKS FCK YEA
                             }
                         }

@@ -3,13 +3,17 @@ package com.example.fitquest
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fitquest.databinding.FragmentPerExerciseBinding
 import com.example.fitquest.ui.UserInfo.Verification_Second
+import com.example.fitquest.ui.Workout.Exercise
+import com.example.fitquest.ui.Workout.SharedViewModel
 import com.google.firebase.storage.FirebaseStorage
 
 private const val ARG_PARAM1 = "param1"
@@ -23,14 +27,23 @@ class PerExerciseFragment : Fragment() {
     private var _binding : FragmentPerExerciseBinding? = null
     private val binding get() = _binding!!
 
+    private var exerciseID: Int         = 0
     private var ExerciseName: String    = ""
-    private var ExerciseImage : Int     = 0
+    private var ExerciseImage: String       = ""
     private var ExerciseType: String    = ""
-    private var TargetBody: String      = ""
-    private var CalorieBurned : Int     = 0
     private var ExerciseInfo : String   = ""
+    private var TargetBody: String      = ""
+    private var timeSec: Int            = 0
+    private var weight: Float           = 0f
+    private var numOfReps: Int          = 0
+    private var numOfSets: Int          = 0
+    private var restBetweenSets: Int    = 0
+    private var CalorieBurned : Int     = 0
 
-    private var imagePath: String = ""
+
+
+
+    private val viewModel: SharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,24 +71,57 @@ class PerExerciseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as? AppCompatActivity)?.supportActionBar?.title = arguments?.getString("exerciseName").toString()
+
+        //viewModel.addExercise(tempExercise)
+
         val ONE_MEGABYTE : Long = 1024 * 1024
-
+        exerciseID = arguments?.getInt("exerciseID").toString().toInt()
         ExerciseName = arguments?.getString("exerciseName").toString()
-        imagePath = arguments?.getString("imgPath").toString()
+        ExerciseImage = arguments?.getString("imgPath").toString()
         ExerciseType = arguments?.getString("exerciseType").toString()
+        ExerciseInfo = arguments?.getString("exerciseDesc").toString()
         TargetBody = arguments?.getString("targetBody").toString()
+        timeSec = arguments?.getInt("timeSec")!!
+        weight = arguments?.getFloat("weight")!!
+        numOfReps = arguments?.getInt("numOfReps").toString().toInt()
+        numOfSets = arguments?.getInt("numOfSets")!!
+        restBetweenSets = arguments?.getInt("restBetweenSets")!!
         CalorieBurned = arguments?.getInt("calorieBurned")!!
-        ExerciseInfo = arguments?.getString("exerciseInfo").toString()
 
-        ChangeImage(imagePath)
+        ChangeImage(ExerciseImage)
         ChangeData()
 
+        binding.buttonRemove.setOnClickListener {
+            val tempExercise : Exercise = Exercise(
+                exerciseId = exerciseID,
+                exerciseName = ExerciseName,
+                exerciseImgPath = ExerciseImage,
+                exerciseType = ExerciseType,
+                exerciseDesc = ExerciseInfo,
+                targetBody = TargetBody,
+                timeSec = timeSec,
+                weight = weight,
+                numOfReps = numOfReps,
+                numOfSets = numOfSets,
+                restBetweenSets = restBetweenSets,
+                burnedCalorie = CalorieBurned
+            )
+            viewModel.addExercise(tempExercise)
+            println(tempExercise.exerciseName)
+            println("added to list")
+
+            findNavController().navigate(R.id.action_perExerciseFragment_to_exerciseListFragment2)
+            /*
+            *   Smart Function doesn't WORK
+            * */
+        }
         binding.buttonTestExercise1.setOnClickListener {
 
 
             ExerciseName = "Push up"
             //ExerciseImage = R.drawable.better_pushups
-            imagePath = "ExercisePicture/better_pushups.png"
+            ExerciseImage = "ExercisePicture/better_pushups.png"
             ExerciseType = "Strength"
             TargetBody = "Chest"
             CalorieBurned = 100
@@ -83,7 +129,7 @@ class PerExerciseFragment : Fragment() {
                     "joint proprioception, joint stability and muscle co-activation around the " +
                     "shoulder joint."
 
-            ChangeImage(imagePath)
+            ChangeImage(ExerciseImage)
             ChangeData()
 
 
@@ -92,7 +138,7 @@ class PerExerciseFragment : Fragment() {
         binding.buttonTestExercise2.setOnClickListener {
             ExerciseName = "Squat"
             //ExerciseImage = R.drawable.better_squat
-            imagePath = "ExercisePicture/better_squat.png"
+            ExerciseImage = "ExercisePicture/better_squat.png"
 
             ExerciseType = "Strength"
             TargetBody = "Leg"
@@ -100,7 +146,7 @@ class PerExerciseFragment : Fragment() {
             ExerciseInfo = "A squat is a strength exercise in which the trainee lowers their hips " +
                     "from a standing position and then stands back up."
 
-            ChangeImage(imagePath)
+            ChangeImage(ExerciseImage)
             ChangeData()
         }
 
@@ -120,7 +166,7 @@ class PerExerciseFragment : Fragment() {
     fun ChangeData()
     {
         binding.textViewExerciseName.setText(ExerciseName)
-        binding.imageViewCurrentExercise.setImageResource(ExerciseImage)
+        //binding.imageViewCurrentExercise.setImageResource(ExerciseImage)
         binding.textViewTypeName.setText(ExerciseType)
         binding.textViewBodyPartName.setText(TargetBody)
         binding.textViewCalorie.text = String.format("%d Kcal", CalorieBurned)

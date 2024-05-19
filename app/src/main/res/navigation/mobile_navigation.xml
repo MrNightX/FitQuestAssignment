@@ -147,7 +147,11 @@
         android:id="@+id/perExerciseFragment"
         android:name="com.example.fitquest.PerExerciseFragment"
         android:label="fragment_per_exercise"
-        tools:layout="@layout/fragment_per_exercise" />
+        tools:layout="@layout/fragment_per_exercise" >
+        <action
+            android:id="@+id/action_perExerciseFragment_to_exerciseListFragment2"
+            app:destination="@id/exerciseListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/goalPage"
         android:name="com.example.fitquest.ui.UserInfo.goalPage"
