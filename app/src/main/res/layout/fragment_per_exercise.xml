@@ -23,6 +23,7 @@
         android:insetBottom="0dp"
         android:textAlignment="center"
         android:translationX="10dp"
+        android:visibility="invisible"
         app:cornerRadius="100dp"
         app:icon="@drawable/outline_arrow_back_ios_new_24"
         app:iconPadding="8dp"
@@ -208,6 +209,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Inject 1"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/textViewExerciseInfo"
         app:layout_constraintTop_toBottomOf="@+id/textViewExerciseInfo" />
 
@@ -217,6 +219,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Inject 2"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/textViewExerciseInfo"
         app:layout_constraintTop_toBottomOf="@+id/textViewExerciseInfo" />
 

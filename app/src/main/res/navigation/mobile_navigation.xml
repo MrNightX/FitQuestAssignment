@@ -40,7 +40,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_addRoutine"
+        android:id="@+id/workout_ChooseMode"
         android:name="com.example.fitquest.ui.Workout.WorkoutPage"
         android:label="fragment_workout_page"
         tools:layout="@layout/fragment_workout_page">

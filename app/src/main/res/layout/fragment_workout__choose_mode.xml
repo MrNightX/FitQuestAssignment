@@ -96,6 +96,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="32dp"
         android:text="Inject1"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonCustom" />
 
@@ -106,6 +107,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="44dp"
         android:text="Inject 2"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonCustom" />
 
@@ -115,6 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Load and Check"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/buttonC_Workout_Inject2"
         app:layout_constraintStart_toStartOf="@+id/buttonC_Workout_Inject1"
         app:layout_constraintTop_toBottomOf="@+id/buttonC_Workout_Inject1" />

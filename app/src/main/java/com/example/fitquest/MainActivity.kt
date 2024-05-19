@@ -2,7 +2,6 @@ package com.example.fitquest
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
@@ -11,9 +10,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.fitquest.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.fitquest.ui.UserInfo.LoginActivity
-import com.example.fitquest.ui.UserInfo.RegisterActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 
@@ -49,9 +47,9 @@ class MainActivity : AppCompatActivity() {
             val appBarConfiguration = AppBarConfiguration(
                 setOf(
                     R.id.navigation_home,
-                    R.id.navigation_dashboard,
-                    R.id.navigation_addRoutine,
-                    R.id.navigation_notifications,
+                    //R.id.navigation_dashboard,
+                    R.id.workout_ChooseMode,
+                    //R.id.navigation_notifications,
                     R.id.profilePage
                 )
             )
