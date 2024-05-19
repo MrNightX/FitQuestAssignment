@@ -96,9 +96,9 @@
 
 
     //Body Page
-    <string name="previous_info">Your Previous Body Information Is:</string>
-    <string name="previous_weight">Your Previous Weight Is:</string>
-    <string name="previous_height">Your Previous Height Is:</string>
-    <string name="enter_current_weight">Enter Your Current Weight:</string>
-    <string name="enter_current_height">Enter Your Current Height:</string>
+    <string name="previous_info">Your Previous Body Information</string>
+    <string name="previous_weight">Your Previous Weight</string>
+    <string name="previous_height">Your Previous Height</string>
+    <string name="enter_current_weight">Enter Your Current Weight</string>
+    <string name="enter_current_height">Enter Your Current Height</string>
 </resources>
