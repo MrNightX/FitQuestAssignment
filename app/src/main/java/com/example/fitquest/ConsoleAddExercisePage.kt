@@ -1,11 +1,11 @@
 package com.example.fitquest
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.fitquest.databinding.FragmentConsoleAddExercisePageBinding
 import com.example.fitquest.ui.Workout.Exercise
 import com.google.firebase.database.DatabaseReference
@@ -55,8 +55,8 @@ class ConsoleAddExercisePage : Fragment() {
 
         binding.buttonAddData.setOnClickListener {
 
-            //filepath = "Exercise/"
-            //filepath += binding.editTextExerciseName.text.toString()
+            filepath = "Exercise/"
+            filepath += binding.editTextExerciseName.text.toString()
             Toast.makeText(requireContext(), filepath, Toast.LENGTH_SHORT).show()
 
             val exercise:Exercise = Exercise(
@@ -74,18 +74,23 @@ class ConsoleAddExercisePage : Fragment() {
                 burnedCalorie =  100
             )
 
-            /*firebaseRef = FirebaseDatabase.getInstance().getReference(filepath)
+            firebaseRef = FirebaseDatabase.getInstance().getReference(filepath)
 
             firebaseRef.setValue(exercise)
                 .addOnCompleteListener {
                     Toast.makeText(requireContext(), binding.editTextExerciseName.text.toString() + " Is Set", Toast.LENGTH_SHORT).show()
                 }.addOnFailureListener {
                     Toast.makeText(requireContext(), "This failed", Toast.LENGTH_SHORT).show()
-                }*/
-
+                }
+            /*
             val database = FirebaseDatabase.getInstance()
             val exerciseRef = database.getReference("Exercises")
 
+            val gson = GsonBuilder().create()
+            val json = gson.toJson(exercise)
+
+            exerciseRef.push().setValue(json)
+            */
 
         }
     }

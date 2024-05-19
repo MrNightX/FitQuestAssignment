@@ -1,22 +1,19 @@
 package com.example.fitquest.ui.Workout
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentWorkoutChooseModeBinding
-import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.database
-import com.google.firebase.database.getValue
 
 
 class Workout_ChooseMode : Fragment() {
@@ -124,41 +121,55 @@ class Workout_ChooseMode : Fragment() {
 
             val exerciseName : String = "Push Up"
 
-            fetchExerciseData(exerciseName)
+            fetchExerciseData(exerciseName, bundle)
             //Then go to the Per Exercise Fragment
-            //findNavController().navigate(R.id.action_workout_ChooseMode_to_perExerciseFragment, bundle)
+
         }
     }
 
-    private fun fetchExerciseData(inputName:String)
+    private fun fetchExerciseData(inputName:String, bundle: Bundle)
     {
         println("Reached Here")
-        firebaseRef = FirebaseDatabase.getInstance().reference
-        val exerciseRef = firebaseRef.child("Exercise").child(inputName)
-        exerciseRef.get().addOnSuccessListener {
-            Toast.makeText(requireContext(), "Can fetch data",Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener {
-            Toast.makeText(requireContext(), "Can't fetch data",Toast.LENGTH_SHORT).show()
-        }
+        val database = FirebaseDatabase.getInstance()
+        val exerciseRef = database.getReference("Exercise")
 
-        exerciseRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val exercise: Exercise = snapshot.getValue(Exercise ::class.java)!!
-                if(exercise != null)
-                {
-                    Toast.makeText(requireContext(), "Can fetch data using snapshot",Toast.LENGTH_SHORT).show()
+        exerciseRef.orderByChild("exerciseName").equalTo(inputName).addListenerForSingleValueEvent(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()) {
+                        //If found
+                        //Can be found by normal means, now how to get it
+                        println("work on existence")
+                        for(exerciseSnap in snapshot.children)
+                        {
+                            println("work on finding children")
+                            val tempExercise = exerciseSnap.getValue(Exercise::class.java)
+                            println("can get")
+                            if (tempExercise != null) {
+
+                                bundle.putString("exerciseName", tempExercise.exerciseName)
+                                bundle.putString("imgPath", tempExercise.exerciseImgPath)
+                                bundle.putString("exerciseType", tempExercise.exerciseType)
+                                bundle.putString("targetBody", tempExercise.targetBody)
+                                bundle.putInt("calorieBurned", tempExercise.burnedCalorie)
+                                bundle.putString("exerciseInfo", tempExercise.exerciseDesc)
+                                println("DATA SETTT !!!")
+                                findNavController().navigate(R.id.action_workout_ChooseMode_to_perExerciseFragment, bundle)
+                                //THIS WORKS FCK YEA
+                            }
+                        }
+                    }
+                    else{
+                        //If not found
+                        Toast.makeText(requireContext(), "Slight Error", Toast.LENGTH_SHORT).show()
+                    }
                 }
-                else
-                {
-                    Toast.makeText(requireContext(), "Can't fetch data using snapshot",Toast.LENGTH_SHORT).show()
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(requireContext(), "Major Error", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), "Error with fetching data using snapshot",Toast.LENGTH_SHORT).show()
-            }
-
-        })
+        )
     }
 
 
