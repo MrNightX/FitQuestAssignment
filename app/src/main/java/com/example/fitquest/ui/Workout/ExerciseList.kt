@@ -12,8 +12,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitquest.R
 import com.example.fitquest.databinding.FragmentExerciseListBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.launch
 
 class ExerciseListFragment : Fragment() {
@@ -23,19 +26,19 @@ class ExerciseListFragment : Fragment() {
     private val viewModel: SharedViewModel by activityViewModels()
     private val exerciseRepository = ExerciseRepos()
     val NewList : MutableList<Exercise> = mutableListOf()
-
+    private lateinit var adapter: ExerciseAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentExerciseListBinding.inflate(inflater, container, false)
+        fetchAllExercise()
         return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        fetchAllExercise()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,25 +46,69 @@ class ExerciseListFragment : Fragment() {
 
         val exercises = generateExerciseList()
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.adapter = ExerciseAdapter(
+
+        adapter = ExerciseAdapter(
             //exercises,
             NewList,
             onItemClick = { exercise ->
                 Toast.makeText(context, "Selected: ${exercise.exerciseName}", Toast.LENGTH_SHORT).show()
+                val bundle = Bundle()
+                //fetchExerciseData(exercise.exerciseName, bundle)
                 viewModel.addExercise(exercise) // Add exercise to the shared ViewModel
             }
         )
 
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.adapter = adapter
         // Set up the click listener for the button
         binding.buttonViewSelected.setOnClickListener {
             findNavController().navigate(R.id.action_exerciseListFragment_to_selectedExercisesFragment)
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun fetchExerciseData(inputName:String, bundle: Bundle)
+    {
+        println("Reached Here")
+        val database = FirebaseDatabase.getInstance()
+        val exerciseRef = database.getReference("Exercise")
+
+        exerciseRef.orderByChild("exerciseName").equalTo(inputName).addListenerForSingleValueEvent(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()) {
+                        //If found
+                        //Can be found by normal means, now how to get it
+                        println("work on existence")
+                        for(exerciseSnap in snapshot.children)
+                        {
+                            println("work on finding children")
+                            val tempExercise = exerciseSnap.getValue(Exercise::class.java)
+                            println("can get")
+                            if (tempExercise != null) {
+
+                                bundle.putString("exerciseName", tempExercise.exerciseName)
+                                bundle.putString("imgPath", tempExercise.exerciseImgPath)
+                                bundle.putString("exerciseType", tempExercise.exerciseType)
+                                bundle.putString("targetBody", tempExercise.targetBody)
+                                bundle.putInt("calorieBurned", tempExercise.burnedCalorie)
+                                bundle.putString("exerciseInfo", tempExercise.exerciseDesc)
+                                println("DATA SETTT !!!")
+                                findNavController().navigate(R.id.action_workout_ChooseMode_to_perExerciseFragment, bundle)
+                                //THIS WORKS FCK YEA
+                            }
+                        }
+                    }
+                    else{
+                        //If not found
+                        Toast.makeText(requireContext(), "Slight Error", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(requireContext(), "Major Error", Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
     }
 
     class ExerciseRepos {
@@ -89,14 +136,14 @@ class ExerciseListFragment : Fragment() {
     private fun fetchAllExercise() {
 
         lifecycleScope.launch {
-            exerciseRepository.fetchExercise { exercises ->
+        exerciseRepository.fetchExercise { exercises ->
                 NewList.clear()
                 NewList.addAll(exercises)
 
+                adapter.notifyDataSetChanged() //Notify their parents :D
                 println("It Worked")
             }
         }
-
     }
 
     private fun generateExerciseList(): List<Exercise> {
@@ -121,5 +168,9 @@ class ExerciseListFragment : Fragment() {
             Exercise(0, "Jumping Jack","", "","A basic jumping jack", "Full Body", 60, 0f, 30, 3, 60, 20)
 
         )
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

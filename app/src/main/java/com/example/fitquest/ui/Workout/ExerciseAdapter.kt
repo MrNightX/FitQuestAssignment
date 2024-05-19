@@ -1,12 +1,13 @@
 package com.example.fitquest.ui.Workout
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitquest.databinding.ItemExerciseBinding
 
 class ExerciseAdapter(
-    private val exercises: List<Exercise>,
+    private val exercises: MutableList<Exercise>,
     private val onItemClick: (Exercise) -> Unit
 ) : RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>() {
 
@@ -19,7 +20,7 @@ class ExerciseAdapter(
 
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         holder.bind(exercises[position])
-        holder.itemView.setBackgroundColor(if (selectedPosition == position) android.graphics.Color.LTGRAY else android.graphics.Color.TRANSPARENT)
+        holder.itemView.setBackgroundColor(if (selectedPosition == position) Color.LTGRAY else Color.TRANSPARENT)
         holder.itemView.setOnClickListener {
             val previousPosition = selectedPosition
             selectedPosition = holder.adapterPosition

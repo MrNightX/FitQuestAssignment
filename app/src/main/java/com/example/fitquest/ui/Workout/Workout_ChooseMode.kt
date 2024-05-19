@@ -154,7 +154,7 @@ class Workout_ChooseMode : Fragment()
                                 bundle.putInt("calorieBurned", tempExercise.burnedCalorie)
                                 bundle.putString("exerciseInfo", tempExercise.exerciseDesc)
                                 println("DATA SETTT !!!")
-                                findNavController().navigate(R.id.action_workout_ChooseMode_to_perExerciseFragment, bundle)
+                                findNavController().navigate(R.id.action_exerciseListFragment_to_perExerciseFragment, bundle)
                                 //THIS WORKS FCK YEA
                             }
                         }
