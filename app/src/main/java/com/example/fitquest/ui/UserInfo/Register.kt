@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -80,12 +81,17 @@ class Register : Fragment() {
 
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 Toast.makeText(requireContext(), "Invalid email format", Toast.LENGTH_SHORT).show()
-                Log.d("Email Fail","Email Wrong")
                 return@setOnClickListener
             }
 
             if(!passwordPattern.matches(password)){
-                Toast.makeText(requireContext(), "Invalid password format", Toast.LENGTH_SHORT).show()
+                val message = "Invalid password format. Ensure it contains:\n" +
+                        "- 1 uppercase letter\n" +
+                        "- 1 lowercase letter\n" +
+                        "- 1 digit\n" +
+                        "- At least 8 characters"
+
+                showAlertDialog("Password Requirements", message)
                 return@setOnClickListener
             }
             if(!malaysiaPattern.matches(phoneNum)){
@@ -165,7 +171,16 @@ class Register : Fragment() {
             }
     }
 
-
+    private fun showAlertDialog(title: String, message: String) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
 }
 
 
