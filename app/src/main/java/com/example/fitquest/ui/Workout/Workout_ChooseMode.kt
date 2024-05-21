@@ -118,12 +118,16 @@ class Workout_ChooseMode : Fragment()
                 }
         }
         binding.buttonLoadAndCheck.setOnClickListener {
-
+            //This is a testing button
             val exerciseName : String = "Push Up"
 
             fetchExerciseData(exerciseName, bundle)
             //Then go to the Per Exercise Fragment
 
+        }
+
+        binding.buttonToAddConsole.setOnClickListener {
+            findNavController().navigate(R.id.action_workout_ChooseMode_to_consoleAddExercisePage)
         }
     }
 

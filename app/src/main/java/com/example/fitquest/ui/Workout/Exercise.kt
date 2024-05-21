@@ -15,9 +15,9 @@ data class Exercise(
     val targetBody: String      = "",
     val timeSec: Int            = 0,
     val weight: Float           = 0f,
-    val numOfReps: Int          = 0,
-    val numOfSets: Int          = 0,
-    val restBetweenSets: Int    = 0,
-    val burnedCalorie: Int      = 0,
+    val numOfReps: Int          = 1,
+    val numOfSets: Int          = 3,
+    val restBetweenSets: Int    = 60,
+    val burnedCalorie: Int      = 100,
 )
 

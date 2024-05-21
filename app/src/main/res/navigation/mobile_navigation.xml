@@ -66,7 +66,11 @@
         android:id="@+id/workout_ChooseMode"
         android:name="com.example.fitquest.ui.Workout.Workout_ChooseMode"
         android:label="Choose Workout Mode"
-        tools:layout="@layout/fragment_workout__choose_mode" />
+        tools:layout="@layout/fragment_workout__choose_mode" >
+        <action
+            android:id="@+id/action_workout_ChooseMode_to_consoleAddExercisePage"
+            app:destination="@id/consoleAddExercisePage" />
+    </fragment>
         <action
             android:id="@+id/action_workout_ChooseMode_to_perExerciseFragment"
             app:destination="@id/perExerciseFragment" />
@@ -166,7 +170,7 @@
     <fragment
         android:id="@+id/consoleAddExercisePage"
         android:name="com.example.fitquest.ConsoleAddExercisePage"
-        android:label="fragment_console_add_exercise_page"
+        android:label="Console: Add Exercise"
         tools:layout="@layout/fragment_console_add_exercise_page" />
 
     <fragment
@@ -193,4 +197,9 @@
         android:name="com.example.fitquest.ui.Workout.SelectedExercisesFragment"
         android:label="Selected Exercises"
         tools:layout="@layout/fragment_selected_exercise" />
+    <fragment
+        android:id="@+id/selected_preset_list"
+        android:name="com.example.fitquest.selected_preset_list"
+        android:label="fragment_selected_preset_list"
+        tools:layout="@layout/fragment_selected_preset_list" />
 </navigation>

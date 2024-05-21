@@ -8,5 +8,5 @@ data class Routine(
     @PrimaryKey(autoGenerate = true)
     var routineId: Int,
     var workoutId: Int,
-    var exerciseId: Int,
+    var exerciseId: Int
 )
