@@ -190,6 +190,9 @@
         <action
             android:id="@+id/action_exerciseListFragment_to_perExerciseFragment"
             app:destination="@id/perExerciseFragment" />
+        <action
+            android:id="@+id/action_exerciseListFragment_to_selected_preset_list"
+            app:destination="@id/selected_preset_list" />
     </fragment>
 
     <fragment

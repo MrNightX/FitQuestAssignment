@@ -61,7 +61,7 @@ class ExerciseListFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         // Set up the click listener for the button
         binding.buttonViewSelected.setOnClickListener {
-            findNavController().navigate(R.id.action_exerciseListFragment_to_selectedExercisesFragment)
+            findNavController().navigate(R.id.action_exerciseListFragment_to_selected_preset_list)
         }
     }
 
@@ -77,12 +77,12 @@ class ExerciseListFragment : Fragment() {
                     if(snapshot.exists()) {
                         //If found
                         //Can be found by normal means, now how to get it
-                        println("work on existence")
+                        //println("work on existence")
                         for(exerciseSnap in snapshot.children)
                         {
-                            println("work on finding children")
+                            //println("work on finding children")
                             val tempExercise = exerciseSnap.getValue(Exercise::class.java)
-                            println("can get")
+                            //println("can get")
                             if (tempExercise != null) {
                                 bundle.putInt("exerciseID", tempExercise.exerciseId)
                                 bundle.putString("exerciseName", tempExercise.exerciseName)
