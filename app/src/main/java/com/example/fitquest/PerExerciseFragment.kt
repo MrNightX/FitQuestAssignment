@@ -14,12 +14,20 @@ import com.example.fitquest.databinding.FragmentPerExerciseBinding
 import com.example.fitquest.ui.UserInfo.Verification_Second
 import com.example.fitquest.ui.Workout.Exercise
 import com.example.fitquest.ui.Workout.SharedViewModel
+import com.example.fitquest.ui.Workout.WorkoutV2
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class PerExerciseFragment : Fragment() {
+    private lateinit var auth: FirebaseAuth
 
     private var param1: String? = null
     private var param2: String? = null
@@ -70,6 +78,8 @@ class PerExerciseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
 
         (activity as? AppCompatActivity)?.supportActionBar?.title = arguments?.getString("exerciseName").toString()
 
@@ -111,7 +121,44 @@ class PerExerciseFragment : Fragment() {
             println(tempExercise.exerciseName)
             println("added to list")
 
+
             findNavController().navigate(R.id.action_perExerciseFragment_to_exerciseListFragment2)
+
+            val tempWorkout : WorkoutV2 = WorkoutV2(
+                workoutName = tempExercise.exerciseName,
+                uid = user!!.uid,
+                workoutDesc = tempExercise.exerciseDesc,
+
+                )
+
+
+            var firebaseRef : DatabaseReference = FirebaseDatabase.getInstance().getReference("Workout")
+
+            firebaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var routineID : String = "0"
+                    if(dataSnapshot.childrenCount.toString().toInt() > 0)
+                    {
+                        routineID = (dataSnapshot.childrenCount).toString()
+                    }
+                    firebaseRef.child(routineID).setValue(tempWorkout)
+                        .addOnSuccessListener {
+                            println("Routine added successfully!") //can remove or change to Log to do error checking
+//Logic Here
+                        }
+                        .addOnFailureListener { exception ->
+                            println("Failed to add routine: ${exception.message}") // change to log for error check or toaster
+                        }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    println("Database error: ${databaseError.message}")
+                }
+            })
+
+
+
+
             /*
             *   Smart Function doesn't WORK
             * */

@@ -10,6 +10,6 @@ data class WorkoutV2 (
     var workoutName: String = "",
     var uid : String     = "",
     var workoutDesc : String = "",
-    var exerciseList: MutableList<Exercise> = mutableListOf()
+
 )
 
